@@ -1,18 +1,18 @@
 #ifndef __NURSE_H
 #define __NURSE_H
 
-const int NAME_LENGTH = 20;
+
 
 class Nurse
 {
 private:
 	char* name;
 	int employeeNum;
-	char* experience;
+	int experience;
 
 
 public:
-	Nurse(const char* name, int employeeNum, const char* field);
+	Nurse(const char* name, int employeeNum, int experience);
 	Nurse(const Nurse& other);
 	~Nurse();
 

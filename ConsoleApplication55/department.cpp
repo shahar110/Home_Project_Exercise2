@@ -65,3 +65,14 @@ Department::Department(const Department& other) : name(nullptr)
 	for (int i = 0; i < numOfNurses; i++)
 		allNurses[i] = new Nurse(*other.allNurses[i]);
 }
+
+void Department::printDepartment() const
+{
+	int i = 0;
+	cout << "The doctors are : ";
+	for (i = 0; i < numOfDoctors; i++)
+		allDoctors[i]->print();
+	cout << "The nurses are: ";
+	for (i = 0; i < numOfNurses; i++)
+		allNurses[i]->print();
+}

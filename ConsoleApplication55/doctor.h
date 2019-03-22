@@ -17,33 +17,17 @@ public:
 	~Doctor();
 
 	bool setName(const char* name);
-	bool setAge(int age);
+	bool setEmployeeNum(int age);
 	bool setField(const char* field);
 
 	const char* getName() const;
-	int getAge() const;
+	int getEmployeeNum() const;
 	const char* getField() const;
 
 	void print() const;
 
 
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 #endif // !1
