@@ -1,49 +1,23 @@
 #ifndef __NURSE_H
 #define __NURSE_H
+#include "StaffMember.h"
 
+using namespace std;
 
-
-class Nurse
+class Nurse : public StaffMember
 {
 private:
-	char* name;
-	int employeeNum;
 	int experience;
 
-
 public:
-	Nurse(const char* name, int employeeNum, int experience);
-	Nurse(const Nurse& other);
+	Nurse(const char * name, int experience);
 	~Nurse();
 
-	bool setName(const char* name);
-	bool setemployeeNum(int age);
-	bool setexperience(int experience);
+	bool setExperience(int experience);
 
-	const char* getName() const;
-	int getemployeeNum() const;
-	int getexperience() const;
+	int getExperience() const;
 
 	void print() const;
-
-
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 #endif // !1

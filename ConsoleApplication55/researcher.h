@@ -1,35 +1,28 @@
-
-#include "article.h"
 #ifndef __RESEARCHER_H
 #define __RESEARCHER_H
 
-const int NAME_LENGTH = 20;
+#define _CRT_SECURE_NO_WARNINGS
+using namespace std;
+#include <iostream>
+#include "string.h"
+#include "article.h"
+#include "StaffMember.h"
 
-class Researcher
+class Researcher : virtual public StaffMember
 {
-private:
-	char *name;
-	int id;
-	int articleCnt;
-	Article **allArticles;
+protected:
+	Article** articleArr;
 
+	int physArticleArr = 2;
+	int numOfArticles = 0;
 
 public:
-	Researcher(const char* name, int id);
-	Researcher(const Researcher& other);
+	Researcher(const char* name);
 	~Researcher();
 
-	bool setName(const char* name);
-	bool setId(int age);
-	bool addArticle();
-	const char* getName() const;
-	int getId() const;
+	bool addArticle(const char* articleName, const char* magazineName, const Date& date);
 
-	void print() const;
-
-
+	void printDetails() const;
+	void printArticleList() const;
 };
-
-
-
-#endif // !1
+#endif

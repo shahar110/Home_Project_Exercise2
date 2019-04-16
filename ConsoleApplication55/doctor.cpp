@@ -1,64 +1,31 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include "doctor.h"
-#include <iostream>
-using namespace std;
 
-Doctor::Doctor(const char* name, int employeeNum, const char* field) : name(nullptr), field(nullptr)
+Doctor::Doctor(const char* name, const char* expertise) : StaffMember(name)
 {
-	setName(name);
-	setEmployeeNum(employeeNum);
-	setField(field);
-}
-
-Doctor::Doctor(const Doctor &other) : name(nullptr), field(nullptr)
-{
-	setName(other.name);
-	setEmployeeNum(other.employeeNum);
-	setField(other.field);
+	setExpertise(expertise);
 }
 
 Doctor::~Doctor()
 {
-	delete[]name;
-	delete[]field;
+	delete[]expertise;
 }
 
-bool Doctor::setName(const char* tmpName)
+bool Doctor::setExpertise(const char* tmpExpertise)
 {
-	delete[]name;
-	name = new char[strlen(tmpName) + 1];
-	strcpy(name, tmpName);
-	return true;
-}
-bool Doctor::setEmployeeNum(int tmpNum)
-{
-	employeeNum = tmpNum;
-	return true;
-}
-bool Doctor::setField(const char* tmpField)
-{
-	delete[]field;
-	field = new char[strlen(tmpField) + 1];
-	strcpy(field, tmpField);
+	delete[]expertise;
+	expertise = new char[strlen(tmpExpertise) + 1];
+	strcpy(expertise, tmpExpertise);
 	return true;
 }
 
-const char* Doctor::getName() const
+const char* Doctor::getExpertise() const
 {
-	return name;
-}
-
-int Doctor::getEmployeeNum() const
-{
-	return employeeNum;
-}
-
-const char* Doctor::getField()const
-{
-	return field;
+	return expertise;
 }
 
 void Doctor::print() const
 {
-	cout << "The name of the doctor is: " << name << "and his field is: " << field
-		<< " and his num is: " << employeeNum;
+	cout << "Doctor name: " << name << " , field of expertise: " << expertise
+		<< " , ID: " << employeeNum;
 }

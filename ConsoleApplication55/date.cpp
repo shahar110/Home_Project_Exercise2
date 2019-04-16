@@ -1,15 +1,10 @@
-
-#include <iostream>
 #include "date.h"
 
-using namespace std;
-
-Date::Date(int tmpDay, int tmpMonth, int tmpYear)
+Date::Date(int day, int month, int year)
 {
-	setDay(tmpDay);
-	setMonth(tmpMonth);
-	setYear(tmpYear);
-
+	setDay(day);
+	setMonth(month);
+	setYear(year);
 }
 
 Date::Date(const Date &other)
@@ -19,41 +14,25 @@ Date::Date(const Date &other)
 	setYear(other.year);
 }
 
-
-
-bool Date::setDay(int tmpDay)
+bool Date::setDay(int newDay)
 {
-	day = tmpDay;
-	return true;
-}
-bool Date::setMonth(int tmpMonth)
-{
-	month = tmpMonth;
-	return true;
-}
-bool Date::setYear(int tmpYear)
-{
-	year = tmpYear;
+	day = newDay;
 	return true;
 }
 
-int Date::getDay() const
+bool Date::setMonth(int newMonth)
 {
-	return day;
+	month = newMonth;
+	return true;
 }
 
-int Date::getMonth() const
+bool Date::setYear(int newYear)
 {
-	return month;
+	year = newYear;
+	return true;
 }
 
-int Date::getYear() const
+void Date::printDate() const
 {
-	return year;
-}
-
-void Date::print() const
-{
-	cout << day << " " << month
-		<< " " << year;
-}
+	cout << day << "/" << month << "/" << year;
+};

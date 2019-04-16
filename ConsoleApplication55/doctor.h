@@ -1,33 +1,21 @@
 #ifndef __DOCTOR_H
 #define __DOCTOR_H
+#include "StaffMember.h"
 
-const int NAME_LENGTH = 20;
-
-class Doctor
+class Doctor : virtual public StaffMember
 {
-private:
-	char* name;
-	int employeeNum;
-	char* field;
-
+protected:
+	char* expertise;
 
 public:
-	Doctor(const char* name, int employeeNum, const char* field);
-	Doctor(const Doctor& other);
+	Doctor(const char* name, const char* expertise);
 	~Doctor();
 
-	bool setName(const char* name);
-	bool setEmployeeNum(int age);
-	bool setField(const char* field);
+	bool setExpertise(const char* expertise);
 
-	const char* getName() const;
-	int getEmployeeNum() const;
-	const char* getField() const;
+	const char* getExpertise() const;
 
-	void print() const;
-
-
+	virtual void print() const;
 };
 
-
-#endif // !1
+#endif

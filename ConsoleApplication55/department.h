@@ -1,10 +1,11 @@
 #ifndef __DEPARTMENT_H
 #define __DEPARTMENT_H
+#define _CRT_SECURE_NO_WARNINGS
 #include "doctor.h"
 #include "nurse.h"
-
-
-const int NAME_LENGTH = 20;
+#include "patient.h"
+#include <iostream>
+#include <string>
 
 class Department
 {
@@ -12,45 +13,40 @@ private:
 	char* name;
 	Doctor** allDoctors;
 	Nurse** allNurses;
-	int numOfDoctors;
-	int numOfNurses;
-	
+	Patient** allPatients;
+
+	int numOfDoctors = 0;
+	int physDoctorArr = 2;
+
+	int numOfNurses = 0;
+	int physNursesArr = 2;
+
+	int numOfPatients = 0;
+	int physPatientsArr = 2;
 
 public:
 	Department(const char* departmentName);
-	Department(const Department& other);
 	~Department();
+
+	bool setName(const char* departmentName);
+	bool addDoctor(Doctor* newDoctor);
+	bool addNurse(Nurse* newNurse);
+	bool addPatient(Patient* newPatient);
+	bool setNumOfPatients(int num);
 
 	const char* getName() const;
 	Doctor** getAllDoctors();
 	int getNumOfDoctors() const;
 	Nurse** getAllNurses();
 	int getNumOfNurses() const;
+	Patient** getAllPatients();
+	int getNumOfPatients() const;
 
-	bool setName(const char* departmentName);
-	bool addDoctor(Doctor& newDoctor);
-	bool addNurse(Nurse& newNurse);
+	char* selectStaffMember(int* staffMemberNum);
 
 	void printDepartment() const;
-
-
+	void printDepartmentStaff() const;
+	void printPatientsList() const;
 };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#endif // !1
+#endif

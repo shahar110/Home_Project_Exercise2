@@ -1,228 +1,677 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <string>
 using namespace std;
-const int NAME_LENGTH = 20;
+
 #include "nurse.h"
 #include "department.h"
 #include "doctor.h"
+#include "SurgeonDoc.h"
+#include "ResearchDoc.h"
 #include "researcher.h"
 #include "article.h"
+#include "hospital.h"
+#include "date.h"
 
-
-	// FUNCTIONS DECLARATIONS : 
-	void menuFunc();
-	void addNurse(int logicalDepartmentSize, Department** department);
-	void addDoctor(int logicalDepartmentSize, Department** department);
-	void addVisit(int logicalDepartmentSize, Department** department);
-	void addDepartment(Department **department, int &physicalDepartmentSize, int &logicalDepartmentSize);
-	void addArticle(Researcher **institution, int logicalSize);
-	void printPatients();
-	void printStaff(int logicalDepartmentSize, Department** department);
-	void printResearchers(Researcher **institution, int logicalResearchIns);
-	void searchPatient();
-	int departmentSelect(int logicalDepartmentSize, Department** department);
-	Department **duplicateDepartment(Department **deparment, int physicalDepartmentSize, int logicalDepartmentSize);
+#define PURPOSE_LENGTH 200
+//test
+void addDepartment(Hospital& hospital);
+void addNurse(Hospital& hospital);
+void addDoctor(Hospital& hospital);
+void addPatient(Hospital& hospital);
+void addResearcher(Hospital& hospital);
+void addArticles(Hospital& hospital);
+void printDepartmentPatients(Hospital& hospital);
+void printAllStaffMembers(Hospital& hospital);
+void printAllResearchers(Hospital& hospital);
+void findAndPrintPatient(Hospital& hospital);
+int selectPatient(Hospital& hospital);
+int selectResearchers(Hospital& t);
+int departmentSelect(Hospital& t);
+void test(Hospital& hospital);
+void researcherTest(Hospital& hospital);
+void inheritenceTest(Hospital& hospital);
 
 void main()
 {
-	int physicalDepartmentSize=2, logicalDepartmentSize=0;
-	Department** deparment = new Department*[physicalDepartmentSize];
-	int physicalResearchIns = 2, logicalResearchIns = 0;
-	Researcher** institution = new Researcher*[physicalResearchIns];
+	Hospital hospital("Academic Hospital");
 	int option = 0;
-	cout << "Hi and welcome to Academic Hospital " << endl;
-	cout << "For menu press 0 for other actions write the function you would like to do" << endl;
-	cin >> option;
 
-	switch (option)
+	cout << "Hello and welcome to Tel-Aviv Academic College Hospital!\n" << endl;
+	while (option != -1)
 	{
-	case 0 : 
-			menuFunc();
+		cout << "Please select one of the following options:" << endl;
+		cout << "-------------------------------------------" << endl;
+		cout << "1: Add Department(s) to the Hospital" << endl;
+		cout << "2: Add Nurse(s) to the Hospital and assign her to a Department" << endl;
+		cout << "3: Add Doctor(s) to the Hospital and assign him to a Department" << endl;
+		cout << "4: Add Patient and/or open Visitation Form to new/existing Patient" << endl;
+		cout << "5: Add Researcher(s) to the Hospital" << endl;
+		cout << "6: Add Article(s) to a Researcher" << endl;
+		cout << "7: Print Patients list of a specific Deprtment" << endl;
+		cout << "8: Print all staff members of the Hospital" << endl;
+		cout << "9: Print all Researchers of the Hospital Research Institute" << endl;
+		cout << "10: Find Patient and print its details" << endl;
+		cout << "-1: Quit" << endl;
+		cin >> option;
+		
+		switch (option)
+		{
+		case -1:
+			cout << "-------------------------------------------" << endl;
+			cout << "-------------------------------------------" << endl;
+			cout << "-------------------------------------------" << endl;
+			cout << "Thank You For Using Academic Software"<<endl;
 			break;
-	case 1: 
-		addDepartment(deparment, physicalDepartmentSize, logicalDepartmentSize);
-		break;
-	case 2: 
-		addNurse(logicalDepartmentSize, deparment);
-		break;
-	case 3:
-		addDoctor(logicalDepartmentSize, deparment);
-		break;
-	case 4: 
-		addVisit();
-		break;
-	case 5:
-		addResearcher(institution, logicalResearchIns);
-		break;
-	case 6:
-		addArticle(institution, logicalResearchIns);
-		break;
-	case 7:
-		printPatients();
-		break;
-	case 8:
-		printStaff(logicalDepartmentSize, deparment);
-		break;
-	case 9: 
-		printResearchers(institution, logicalResearchIns);
-		break;
-	case 10:
-		searchPatient();
-		break;
+		case 1:
+			addDepartment(hospital);
+			break;
+		case 2:
+			addNurse(hospital);
+			break;
+		case 3:
+			addDoctor(hospital);
+			break;
+		case 4:
+			addPatient(hospital);
+			break;
+		case 5:
+			addResearcher(hospital);
+			break;
+		case 6:
+			addArticles(hospital);
+			break;
+		case 7:
+			printDepartmentPatients(hospital);
+			break;
+		case 8:
+			printAllStaffMembers(hospital);
+			break;
+		case 9:
+			printAllResearchers(hospital);
+			break;
+		case 11:
+			test(hospital);
+			break;
+		case 12:
+			researcherTest(hospital);
+			break;
+		case 13:
+			inheritenceTest(hospital);
+			break;
+		default:
+			cout << "Ileggal selection entered!\nPlease enter a number (1 - 10)\n" << endl;
+		}
+		
 	}
-
 }
 
-void menuFunc()
+void addDepartment(Hospital& hospital)
 {
+	char depName[20];
+	bool addMoreFlag = true;
+	char charInput;
 
-}
-void addDepartment(Department **deparment, int &physicalDepartmentSize, int &logicalDepartmentSize)
-{
-	if (physicalDepartmentSize == logicalDepartmentSize)
+	while (addMoreFlag)
 	{
-		physicalDepartmentSize *= 2;
-		deparment = duplicateDepartment(deparment, physicalDepartmentSize, logicalDepartmentSize);
+		cout << "Enter the name of the Department you wish to add:\n";
+		cin.getline(depName, 20);
+		cin.getline(depName, 20);
+		hospital.addDepartment(depName);
+
+		cout << "Press any key to add more Department(s), to quit press 'q'\n";
+		cin >> charInput;
+		if (charInput == 'q' || charInput == 'Q')
+			addMoreFlag = false;
 	}
-		char depName[NAME_LENGTH];
-		cout << "What's department's name";
-		cin.getline(depName, NAME_LENGTH);
-		cin.getline(depName, NAME_LENGTH);
-		deparment[logicalDepartmentSize]->setName(depName);
-		logicalDepartmentSize++;
 }
 
-
-void addNurse(int logicalDepartmentSize, Department** department)
+void addNurse(Hospital& hospital)
 {
 	char name[NAME_LENGTH];
-	int employeeNum;
 	int experience;
 	int selectDepartment;
-	cout << "Please insert nurse name: " << endl;
-	cin.getline(name, NAME_LENGTH);
-	cin.getline(name, NAME_LENGTH);
-	cout << "Please insert nurse number: " << endl;
-	cin >> employeeNum;
-	cout << "Please insert nurse experience: " << endl;
-	cin >> experience;
-	selectDepartment = departmentSelect(logicalDepartmentSize, department);
-	Nurse *tmp = new Nurse(name, employeeNum, experience);
-	department[selectDepartment]->addNurse(*tmp);
 
-}
-void addDoctor(int logicalDepartmentSize,Department **department)
-{
-	char name[NAME_LENGTH];
-	int employeeNum;
-	char field[NAME_LENGTH];
-	int selectDepartment;
-	cout << "Please insert doctor name: " << endl;
-	cin.getline(name, NAME_LENGTH);
-	cin.getline(name, NAME_LENGTH);
-	cout << "Please insert doctor number: " << endl;
-	cin >> employeeNum;
-	selectDepartment = departmentSelect(logicalDepartmentSize, department);
-	Doctor *tmp = new Doctor(name, employeeNum,department[selectDepartment]->getName());
-	department[selectDepartment]->addDoctor(*tmp);
+	bool addMoreFlag = true;
+	char charInput;
 
-	
-}
-void addVisit(int logicalDepartmentSize, Department** department)
-{
-	int isVisited, id, birthYear, gender, selcet;
-	char *name = new char[NAME_LENGTH];
-	cout << "Press 0 if patient visited or 1 for first visit";
-	cin >> isVisited;
-	if (isVisited == 0)
+	if (hospital.getNumOfDepartments() == 0)
 	{
-
+		cout << "No departments in the Hospital!\nExiting...\n";
 	}
 	else
 	{
-		cout << "Please insert patient name: ";
-		cin.getline(name, NAME_LENGTH);
-		cin.getline(name, NAME_LENGTH);
-		cout << "Please insert id";
-		cin >> id;
-		cout << "Please insert year of birth";
-		cin >> birthYear;
-		cout << "0 if patient male 1 if female";
-		cin >> gender;
-		cout << "Please selece which department you would like to be cured";
-		selcet = departmentSelect(logicalDepartmentSize, department);
-		cout << "Please which doctor you would like to: ";
-		//department[selcet]->getAllDoctors[i]
+		while (addMoreFlag)
+		{
+			cout << "Enter the Nurse's name: " << endl;
+			cin.getline(name, NAME_LENGTH);
+			cin.getline(name, NAME_LENGTH);
+
+			cout << "Enter the Nurse's experience in years: " << endl;
+			cin >> experience;
+
+			selectDepartment = departmentSelect(hospital);
+			if (selectDepartment == -1)
+			{
+				return;
+			}
+			hospital.addNurse(name, experience, selectDepartment);
+
+			cout << "Press any key to add more Nurse(s), to quit press 'q'\n";
+			cin >> charInput;
+			if (charInput == 'q' || charInput == 'Q')
+				addMoreFlag = false;
+		}
 	}
 }
-void addResearcher(Researcher **institution, int logicalResearchIns)
+
+void addDoctor(Hospital& hospital)
 {
 	char name[NAME_LENGTH];
-	int employeeId;
-	cout << "Please insert researcher name: " << endl;
-	cin.getline(name, NAME_LENGTH);
-	cin.getline(name, NAME_LENGTH);
-	cout << "Please insert researcher id: " << endl;
-	cin >> employeeId;
-	Researcher *tmp = new Researcher(name, employeeId);
-	institution[logicalResearchIns] = tmp;
-
-
-}
-void addArticle(Researcher **institution, int logicalSize)
-{
-	int select;
-	cout << "Which one you would like to add article from the list write the number";
-	printResearchers(institution,logicalSize);
-	cin >> select;
-	institution[select]->addArticle();
+	char expertise[NAME_LENGTH];
 	
-}
-void printPatients()
-{
+	int selectDepartment, doctorType, numOfSurgeries;
 
-}
-void printStaff(int logicalDepartmentSize, Department** department)
-{
-	int select = 0;
-	cout << "Selece a department you would like to show staff";
-	select = departmentSelect(logicalDepartmentSize, department);
-	department[select]->printDepartment();
+	bool addMoreFlag = true;
+	char charInput;
 
-
-}
-void printResearchers(Researcher **institution, int logicalSize)
-{
-	for (int i = 0; i < logicalSize; i++)
+	if (hospital.getNumOfDepartments() == 0)
 	{
-		cout << "The " << i << "researcher is :";
-		institution[i]->print();
+		cout << "No departments in the Hospital!\nExiting...\n";
+	}
+	else
+	{
+		while (addMoreFlag)
+		{
+			cout << "Enter the Doctor's name: " << endl;
+			cin.getline(name, NAME_LENGTH);
+			cin.getline(name, NAME_LENGTH);
+
+			cout << "Enter the Doctor's field of expertise: " << endl;
+			cin.getline(expertise, NAME_LENGTH);
+
+			selectDepartment = departmentSelect(hospital);
+			if (selectDepartment == -1)
+			{
+				return;
+			}
+
+			cout << "Select the Doctor's profession:" << endl;
+			cout << "0: Doctor" << endl;
+			cout << "1: Surgeon Doctor" << endl;
+			cout << "2: Research Doctor" << endl;
+
+			cin >> doctorType;
+			if (doctorType < 0 || doctorType > 2)
+			{
+				cout << "Ileggal selection entered!\nExiting...\n";
+				return;
+			}
+
+			switch (doctorType)
+			{
+			case 0:
+				hospital.addDoctor(name, expertise, selectDepartment);
+				break;
+			case 1:
+				cout << "Enter the Surgeon's number of performed surgeries:" << endl;
+				cin >> numOfSurgeries;
+				hospital.addSurgeon(name, expertise, selectDepartment, numOfSurgeries);
+				break;
+			case 2:
+				hospital.addResearchDoctor(name, expertise, selectDepartment);
+				break;
+			}
+			
+			cout << "Press any key to add more Doctor(s), to quit press 'q'\n";
+			cin >> charInput;
+			if (charInput == 'q' || charInput == 'Q')
+				addMoreFlag = false;
+		}
 	}
 }
-void searchPatient()
-{
 
+int selectPatient(Hospital& hospital)
+{
+	int selection;
+	int i;
+	cout << "Select the Patient from the Hospital patients list:\n";
+	for (i = 0; i < hospital.getNumOfPatients(); i++)
+	{
+		cout << i << ": " << hospital.getPatientsArr()[i]->getName() << "    , ID: " << hospital.getPatientsArr()[i]->getId() << endl;
+	}
+
+	cin >> selection;
+	if (selection < 0 || selection > i - 1)
+	{
+		cout << "Ileggal number entered!\nExiting...\n";
+		return -1;
+	}
+	else
+	{ 
+		return selection;
+	}
 }
-int departmentSelect(int logicalDepartmentSize, Department** department)
+
+void addVisit(Hospital& hospital, int patientId, int departmentIndex)
+{
+	char purpose[PURPOSE_LENGTH], departmentName[NAME_LENGTH];
+	int patientIndex, staffMemberId;
+	char *therapistName;
+	int day;
+	int month;
+	int year;
+
+	cout << "Enter the purpose of the Patient's visit:" << endl;
+	cin.getline(purpose, PURPOSE_LENGTH);
+	cin.getline(purpose, PURPOSE_LENGTH);
+
+	//get the ID num and name of the department staff member (therapist) selected by the user
+	therapistName = hospital.getDeparmentsArr()[departmentIndex]->selectStaffMember(&staffMemberId);
+
+	//get the name of the department
+	strcpy(departmentName, hospital.getDeparmentsArr()[departmentIndex]->getName());
+
+	//get the current date (T.B.D)
+	cout << "Enter arrival date: " << endl;
+	cout << "Day of month (1 - 31): ";
+	cin >> day;
+	if (day < 1 || day > 31)
+	{
+		cout << "Ileggal day entered!\nExiting\n";
+		return;
+	}
+	cout << "Enter month (1 - 12): ";
+	cin >> month;
+	if (month < 1 || month > 12)
+	{
+		cout << "Ileggal month entered!\nExiting\n";
+		return;
+	}
+	cout << "Enter year (4 digits)";
+	cin >> year;
+	if (year < 1000 || year > 9999)
+	{
+		cout << "Ileggal year entered!\nExiting\n";
+		return;
+	}
+
+	Date d1(day, month, year);
+
+	//get the index of the patient in the hospital patientArr
+	patientIndex = hospital.findPatientIndex(patientId);
+
+	//add the visit details to the patient
+	hospital.getPatientsArr()[patientIndex]->addVisit(d1, purpose, staffMemberId, therapistName, departmentName);
+}
+
+void addPatient(Hospital& hospital)
+{
+	char name[NAME_LENGTH];
+	int id, birthYear, genderNum;
+	int selectDepartment, selectPtn;
+	eGender gender;
+
+	bool addMoreFlag = true;
+	char charInput;
+
+	cout << "Have the patient visited the Hospital before? ('Y' - Yes , 'N' - No)\n";
+	cin >> charInput;
+
+	if (charInput == 'Y' || charInput == 'y')
+	{
+		if (hospital.getNumOfPatients() == 0)
+		{
+			cout << "No Patients in the Hospital!\nExiting...\n";
+		}
+		else
+		{
+			selectPtn = selectPatient(hospital);
+			if (selectPtn == -1)
+			{
+				return;
+			}
+			selectDepartment = departmentSelect(hospital);
+			if (selectDepartment == -1)
+			{
+				return;
+			}
+			id = hospital.getPatientsArr()[selectPtn]->getId();
+			if (selectDepartment != hospital.getPatientsArr()[selectPtn]->getDepartmentIndex())
+			{
+				hospital.changePatientDepartment(id, selectDepartment);
+			}
+			addVisit(hospital, id, selectDepartment);
+		}
+	}
+	else {
+		if (charInput == 'N' || charInput == 'n')
+		{
+			if (hospital.getNumOfDepartments() == 0)
+			{
+				cout << "No departments in the Hospital!\nExiting...\n";
+				return;
+			}
+			cout << "Adding new Patient\n";
+			cout << "Enter the Patient's name:" << endl;
+			cin.getline(name, NAME_LENGTH);
+			cin.getline(name, NAME_LENGTH);
+
+			cout << "Enter the Patient's ID number:" << endl;
+			cin >> id;
+
+			cout << "Enter the Patient's year of birth:" << endl;
+			cin >> birthYear;
+
+			cout << "Enter the Patient's Gender:  (0 - Male : 1 - Female)" << endl;
+			cin >> genderNum;
+			gender = (eGender)genderNum;
+
+			selectDepartment = departmentSelect(hospital);
+			if (selectDepartment == -1)
+			{
+				return;
+			}
+			hospital.addPatient(name, id, birthYear, gender, selectDepartment);
+
+			addVisit(hospital, id, selectDepartment);
+		}
+		else
+		{
+			cout << "Illegal input entered!\nExiting...\n";
+		}
+	}
+}
+
+void findAndPrintPatient(Hospital& hospital)
+{
+	int id, patientIndex;
+
+	bool addMoreFlag = true;
+	char charInput;
+
+	while (addMoreFlag)
+	{
+		cout << "Enter the ID number of the Patient you wish to find:" << endl;
+		cin >> id;
+		patientIndex = hospital.findPatientIndex(id);
+
+		if (patientIndex != -1)
+		{
+			hospital.getPatientsArr()[patientIndex]->printPatient();
+			cout << endl;
+			hospital.getPatientsArr()[patientIndex]->printCurrentVisit();
+			cout << "\n\n";
+		}
+		else
+		{
+			cout << "Patient ID not found!" << endl;
+		}
+
+		cout << "Press any key to search another Patient, to quit press 'q'\n";
+		cin >> charInput;
+		if (charInput == 'q' || charInput == 'Q')
+			addMoreFlag = false;
+	}
+}
+
+void addResearcher(Hospital& hospital)
+{
+	char name[NAME_LENGTH];
+
+	bool addMoreFlag = true;
+	char charInput;
+
+	while (addMoreFlag)
+	{
+		cout << "Enter the Researcher's name: " << endl;
+		cin.getline(name, NAME_LENGTH);
+		cin.getline(name, NAME_LENGTH);
+
+		hospital.addResearcher(name);
+
+		cout << "Press any key to add more Researcher(s), to quit press 'q'\n";
+		cin >> charInput;
+		if (charInput == 'q' || charInput == 'Q')
+			addMoreFlag = false;
+	}
+}
+
+void addArticles(Hospital& hospital)
+{
+	char articleName[NAME_LENGTH];
+	char magazineName[NAME_LENGTH];
+	int day;
+	int month;
+	int year;
+	int selectResearcher;
+
+	bool addMoreArticlesFlag = true;
+	bool addToResearcherFlag = true;
+	char charInput;
+
+	if (hospital.getNumOfResearchers() == 0)
+	{
+		cout << "No Researchers in the Hospital!\nExiting...\n";
+		return;
+	}
+
+	selectResearcher = selectResearchers(hospital);
+	if (selectResearcher == -1)
+	{
+		return;
+	}
+	while (addToResearcherFlag)
+	{
+		cout << "Enter the Article name: " << endl;
+		cin.getline(articleName, NAME_LENGTH);
+		cin.getline(articleName, NAME_LENGTH);
+
+		cout << "Enter its Magazine name: " << endl;
+		cin.getline(magazineName, NAME_LENGTH);
+
+		cout << "Enter its publish date: " << endl;
+		cout << "Day of month (1 - 31): ";
+		cin >> day;
+		if (day < 1 || day > 31)
+		{
+			cout << "Ileggal day entered!\nExiting\n";
+			return;
+		}
+		cout << "Enter month (1 - 12): ";
+		cin >> month;
+		if (month < 1 || month > 12)
+		{
+			cout << "Ileggal month entered!\nExiting\n";
+			return;
+		}
+		cout << "Enter year (4 digits)";
+		cin >> year;
+		if (year < 1000 || year > 9999)
+		{
+			cout << "Ileggal year entered!\nExiting\n";
+			return;
+		}
+
+		Date d1(day, month, year);
+		hospital.getResearchersArr()[selectResearcher]->addArticle(articleName, magazineName, d1);
+
+		cout << "Press any key to add more Article(s) to the selected Researcher, to quit press 'q'\n";
+		cin >> charInput;
+		if (charInput == 'q' || charInput == 'Q')
+			addToResearcherFlag = false;
+	}
+}
+
+void printDepartmentPatients(Hospital& hospital)
+{
+	int departmentIndex = departmentSelect(hospital);
+
+	if (departmentIndex == -1)
+	{
+		return;
+	}
+
+	hospital.getDeparmentsArr()[departmentIndex]->printPatientsList();
+}
+
+void printAllStaffMembers(Hospital& hospital)
+{
+	for (int i = 0; i < hospital.getNumOfDepartments(); i++) {
+		hospital.getDeparmentsArr()[i]->printDepartmentStaff();
+	}
+}
+
+void printAllResearchers(Hospital& hospital)
+{
+	for (int i = 0; i < hospital.getNumOfResearchers(); i++)
+	{
+		hospital.getResearchersArr()[i]->printDetails();
+		cout << "\n------------------------------------------------" << endl;
+		hospital.getResearchersArr()[i]->printArticleList();
+		cout << "\n------------------------------------------------" << endl;
+	}
+}
+
+int selectResearchers(Hospital& t)
 {
 	int select = 0;
-	cout << "What department you would like to add";
-	for (int i = 0; i < logicalDepartmentSize; i++)
+	int i;
+
+	cout << "Select the number of the Researcher you wish to add Articles to\n";
+	for (i = 0; i < t.getNumOfResearchers(); i++)
 	{
-		cout << "The " << i << "is" << department[i]->getName << endl;
+		cout << i << ". " << t.getResearchersArr()[i]->getName() << endl;
 	}
-	cout << endl;
-	cout << "Which one you would like to choose";
-		cin >> select;
+	cin >> select;
+	if (select < 0 || select > i - 1)
+	{
+		cout << "Ileggal selection entered!\nExiting...\n";
+		return - 1;
+	}
 	return select;
 }
 
-Department **duplicateDepartment(Department **deparment, int physicalDepartmentSize, int logicalDepartmentSize)
+int departmentSelect(Hospital& t)
 {
-	Department** newDepartment = new Department*[physicalDepartmentSize];
-	for (int i = 0; i < logicalDepartmentSize; i++)
+	int select = 0;
+	int i;
+	cout << "Select the number of the department\n";
+	for (i = 0; i < t.getNumOfDepartments(); i++)
 	{
-		newDepartment[i] = deparment[i];
+		cout  << i << ". " << t.getDeparmentsArr()[i]->getName() << endl;
 	}
-	return newDepartment;
+	cin >> select;
+
+	if (select < 0 || select > i - 1)
+	{
+		cout << "Ileggal selection entered!\nExiting...\n";
+		return -1;
+	}
+
+	return select;
+}
+
+void test(Hospital& hospital)
+{
+	//int patientIndex, currentVisit;
+	hospital.addDepartment("Pnimit A");
+	hospital.addDepartment("Pnimit B");
+	hospital.addDepartment("Pnimit C");
+	hospital.addDepartment("Pnimit D");
+	hospital.addDepartment("Pnimit E");
+
+	hospital.addNurse("Sharon", 1, 0);
+	hospital.addNurse("Adi", 3, 0);
+	hospital.addNurse("Adva", 5, 0);
+	hospital.addNurse("Michal", 2, 1);
+	hospital.addNurse("Nastia", 4, 2);
+	hospital.addNurse("Varda", 6, 3);
+	hospital.addNurse("Billah", 6, 4);
+
+	hospital.addSurgeon("David", "Palms", 1, 50);
+	hospital.addSurgeon("Richard", "Knees", 1, 60);
+
+	hospital.addResearchDoctor("Biatrix", "Melven", 4);
+	hospital.addResearchDoctor("Boris", "Mendelblit", 4);
+
+	hospital.addDoctor("Simon", "Heart", 0);
+	hospital.addDoctor("Gurfunkel", "Legs", 0);
+	hospital.addDoctor("Ovadia", "Brain", 0);
+	hospital.addDoctor("Zacariah", "Hands", 1);
+	hospital.addDoctor("Moshe", "Skin", 2);
+	hospital.addDoctor("Shlomi", "Heart", 3);
+	hospital.addDoctor("Pini", "Head", 4);
+
+	hospital.addSurgeon("Gabriel", "Cardio", 0, 30);
+	hospital.addSurgeon("Samual", "Leaver", 0, 40);
+
+	hospital.addResearchDoctor("Thomas", "Addison", 0);
+	hospital.addResearchDoctor("Tulvard", "Hanso", 3);
+
+	Date d1(29, 7, 1991), d2(12, 03, 1957);
+
+	((ResearchDoctor*)hospital.getDoctorsArr()[2])->addArticle("News", "Time Magazine", d1);
+	//hospital.getResearchersArr()[0]->addArticle("Sports", "New York Times", d1);
+	//hospital.getResearchersArr()[0]->addArticle("Science", "Washingtone Post", d2);
+	//hospital.getResearchersArr()[1]->addArticle("Entertinment", "The Economist", d1);
+	//hospital.getResearchersArr()[2]->addArticle("Technological", "PC Magazine", d2);
+
+	hospital.addPatient("Amos", 1111, 1980, Male, 0);
+	hospital.addPatient("Gilad", 2222, 1981, Male, 0);
+	hospital.addPatient("Sarit", 3333, 1982, Female, 1);
+	hospital.addPatient("Tehila", 4444, 1983, Female, 1);
+
+	hospital.getPatientsArr()[0]->addVisit(d1, "Purpose 1", 1, "Simon", "Pnimit A");
+	hospital.getPatientsArr()[1]->addVisit(d1, "Purpose 2", 2, "Gurfunkel", "Pnimit A");
+	hospital.getPatientsArr()[2]->addVisit(d1, "Purpose 3", 3, "Sharon", "Pnimit B");
+	hospital.getPatientsArr()[3]->addVisit(d1, "Purpose 4", 4, "Adi", "Pnimit B");
+
+	//for (int i = 0; i < 3; i++)
+	//{
+	//	hospital.getPatientsArr()[i]->printPatient();
+	//	cout << endl;
+	//	currentVisit = hospital.getPatientsArr()[i]->getVisitCounter() - 1;
+	//	hospital.getPatientsArr()[i]->getVisitsArr()[currentVisit]->printVisitForm();
+	//	cout << endl;
+	//}
+}
+
+void researcherTest(Hospital& hospital)
+{
+	hospital.addResearcher("Isic");
+	hospital.addResearcher("Newton");
+	hospital.addResearcher("Einstien");
+	hospital.addResearcher("Indiana Johnes");
+	hospital.addResearcher("John Lock");
+
+	Date d1(29, 7, 1991), d2(12, 03, 1957);
+	hospital.getResearchersArr()[0]->addArticle("News", "Time Magazine", d1);
+	hospital.getResearchersArr()[0]->addArticle("Sports", "New York Times", d1);
+	hospital.getResearchersArr()[0]->addArticle("Science", "Washingtone Post", d2);
+	hospital.getResearchersArr()[1]->addArticle("Entertinment", "The Economist", d1);
+	hospital.getResearchersArr()[2]->addArticle("Technological", "PC Magazine", d2);
+}
+
+void inheritenceTest(Hospital& hospital) 
+{
+	ResearchDoctor rd1("Avi", "Kelvin");
+	ResearchDoctor rd2("Sibony", "Martian");
+
+	Date d1(29, 7, 1991), d2(12, 03, 1957);
+
+	rd1.addArticle("News", "Time Magazine", d1);
+	rd1.addArticle("Sports", "New York Times", d1);
+	rd1.addArticle("Science", "Washingtone Post", d2);
+	rd2.addArticle("Entertinment", "The Economist", d1);
+	rd2.addArticle("Technological", "PC Magazine", d2);
+
+	rd1.print();
+	cout << endl;
+	rd1.printArticleList();
+	cout << endl;
+	rd2.print();
+	cout << endl;
+	rd2.printArticleList();
+	cout << endl;
 }

@@ -1,8 +1,163 @@
 #include "department.h"
 
-#include <string>
-#include<iostream>
 using namespace std;
+
+// checking if there is max nurse and doc if not take care on the allocation
+Department::Department(const char* departmentName)
+{
+	setName(departmentName);
+	allDoctors = new Doctor*[physDoctorArr];
+	allNurses = new Nurse*[physNursesArr];
+	allPatients = new Patient*[physPatientsArr];
+}
+
+Department::~Department()
+{
+	delete[]allDoctors;
+	delete[]allNurses;
+	delete[]allPatients;
+}
+
+bool Department::setName(const char* departmentName)
+{
+	delete[]name;
+	name = new char[strlen(departmentName) + 1];
+	strcpy(name, departmentName);
+	return true;
+}
+
+bool Department::addNurse(Nurse* newNurse)
+{
+	if (physNursesArr == numOfNurses) {
+		physNursesArr *= 2;
+
+		Nurse** temp = new Nurse*[numOfNurses];
+		for (int i = 0; i < numOfNurses; i++)
+			temp[i] = allNurses[i];
+
+		delete[]allNurses;
+
+		allNurses = new Nurse*[physNursesArr];
+		for (int i = 0; i < numOfNurses; i++)
+			allNurses[i] = temp[i];
+
+		delete[]temp;
+	}
+	allNurses[numOfNurses] = newNurse;
+	numOfNurses++;
+	return true;
+}
+
+bool Department::addDoctor(Doctor* newDoctor)
+{
+	if (physDoctorArr == numOfDoctors) {
+		physDoctorArr *= 2;
+
+		Doctor** temp = new Doctor*[numOfDoctors];
+		for (int i = 0; i < numOfDoctors; i++)
+			temp[i] = allDoctors[i];
+
+		delete[]allDoctors;
+
+		allDoctors = new Doctor*[physDoctorArr];
+		for (int i = 0; i < numOfDoctors; i++)
+			allDoctors[i] = temp[i];
+
+		delete[]temp;
+	}
+	allDoctors[numOfDoctors] = newDoctor;
+	numOfDoctors++;
+	return true;
+}
+
+bool Department::addPatient(Patient* newPatient)
+{
+	if (physPatientsArr == numOfPatients) {
+		physPatientsArr *= 2;
+
+		Patient** temp = new Patient*[numOfPatients];
+		for (int i = 0; i < numOfPatients; i++)
+			temp[i] = allPatients[i];
+
+		delete[]allPatients;
+
+		allPatients = new Patient*[physPatientsArr];
+		for (int i = 0; i < numOfPatients; i++)
+			allPatients[i] = temp[i];
+
+		delete[]temp;
+	}
+	//Add the patient to the department patients array
+	allPatients[numOfPatients] = newPatient;
+	//Save the array index for the patient (for later use)
+	allPatients[numOfPatients]->setDepartmentPatientArrIndex(numOfPatients);
+
+	numOfPatients++;
+	return true;
+}
+
+char* Department::selectStaffMember(int* staffMemberNum)
+{
+	int i,  selectionIndex = 0, selection;
+	char *staffMemberName = nullptr;
+
+	cout << "1: Doctors list" << endl;
+	cout << "2: Nurses list" << endl;
+	cin >> selection;
+
+	switch (selection)
+	{
+	case 1:
+		for (i = 0; i < numOfDoctors; i++)
+			cout << i << ":  Doctor " << allDoctors[i]->getName() << endl;
+
+		cin >> selectionIndex;
+
+		if (selectionIndex < 0 || selectionIndex > i - 1)
+		{
+			cout << "Ileggal selection entered!\nExiting...\n";
+			return nullptr;
+		}
+
+		*staffMemberNum = allDoctors[selectionIndex]->getEmployeeNum();
+
+		staffMemberName = new char(strlen(allDoctors[selectionIndex]->getName()) + 1);
+		strcpy(staffMemberName, allDoctors[selectionIndex]->getName());
+
+		return staffMemberName;
+	break;
+
+	case 2:
+		for (i = 0; i < numOfNurses; i++)
+			cout << i << ":  Nurse " << allNurses[i]->getName() << endl;
+
+		cin >> selectionIndex;
+
+		if (selectionIndex < 0 || selectionIndex > i - 1)
+		{
+			cout << "Ileggal selection entered!\nExiting...\n";
+			return nullptr;
+		}
+
+		*staffMemberNum = allNurses[selectionIndex]->getEmployeeNum();
+
+		staffMemberName = new char(strlen(allNurses[selectionIndex]->getName()) + 1);
+		strcpy(staffMemberName, allNurses[selectionIndex]->getName());
+
+		return staffMemberName;
+	break;
+	default:
+		cout << "Illegal sellection entered!\nExisiting...\n";
+		*staffMemberNum = -1;
+		return nullptr;
+	}
+}
+
+bool Department::setNumOfPatients(int num)
+{
+	numOfPatients = num;
+	return true;
+}
 
 const char* Department::getName() const
 {
@@ -19,60 +174,93 @@ Nurse** Department::getAllNurses()
 	return allNurses;
 }
 
-bool Department::setName(const char* departmentName)
+Patient** Department::getAllPatients()
 {
-	delete[] name;
-	name = new char[strlen(departmentName) + 1];
-	strcpy(name, departmentName);
-	return true;
-
-}
-// missing checking of max doctors and allocating new arr
-bool Department::addDoctor(Doctor& newDoctor)
-{
-	allDoctors[numOfDoctors] = &newDoctor;
-	numOfDoctors++;
-	return true;
+	return allPatients;
 }
 
-bool Department::addNurse(Nurse& newNurse)
+int Department::getNumOfDoctors() const
 {
-	allNurses[numOfNurses] = &newNurse;
-	numOfNurses++;
-	return true;
-}
-// checking if there is max nurse and doc if not take care on the allocation
-Department::Department(const char* departmentName) : name(nullptr)
-{
-	setName(departmentName);
-	numOfDoctors = 0;
-	numOfNurses = 0;
-	allDoctors = new Doctor*[2];
-	allNurses = new Nurse*[2];
+	return numOfDoctors;
 }
 
-Department::Department(const Department& other) : name(nullptr)
+int Department::getNumOfNurses() const
 {
-	setName(other.name);
-	numOfDoctors = other.numOfDoctors;
-	numOfNurses = other.numOfNurses;
+	return numOfDoctors;
+}
 
-	allDoctors = new Doctor*[numOfDoctors];
-	for (int i = 0; i < numOfDoctors; i++)
-		allDoctors[i] = new Doctor(*other.allDoctors[i]);
-
-	allNurses = new Nurse*[numOfNurses];
-	for (int i = 0; i < numOfNurses; i++)
-		allNurses[i] = new Nurse(*other.allNurses[i]);
+int Department::getNumOfPatients() const
+{
+	return numOfPatients;
 }
 
 void Department::printDepartment() const
 {
+	cout << "Department name: " << name << endl;
+	cout << "--------------------------------------------------------" << endl;
 	int i = 0;
-	cout << "The doctors are : ";
-	for (i = 0; i < numOfDoctors; i++)
+
+	cout << "List of Doctors in the department (" << numOfDoctors << "): " << endl;
+	for (i = 0; i < numOfDoctors; i++) {
 		allDoctors[i]->print();
-	cout << "The nurses are: ";
-	for (i = 0; i < numOfNurses; i++)
+		cout << endl;
+	}
+
+	cout << "List of Nurses in the department (" << numOfNurses << "): " << endl;
+	for (i = 0; i < numOfNurses; i++) {
 		allNurses[i]->print();
+		cout << endl;
+	}
+
+	cout << "List of Patients in the department (" << numOfPatients << "): " << endl;
+	for (i = 0; i < numOfPatients; i++) {
+		allPatients[i]->printPatient();
+		cout << endl;
+	}
+
+	cout << "--------------------------------------------------------" << endl;
+}
+
+void Department::printPatientsList() const
+{
+	cout << "Printing Patients list for department " << name << ":" << endl;
+
+	for (int i = 0; i < numOfPatients; i++)
+	{
+		if (allPatients[i]!=nullptr)
+		{
+			allPatients[i]->printPatient();
+			cout << endl;
+			allPatients[i]->printCurrentVisit();
+			cout << "\n\n";
+		}
+
+	}
+	cout << "--------------------------------------------------------" << endl;
+}
+
+void Department::printDepartmentStaff() const
+{
+	cout << "Staff members of Department " << name << ":" << endl;
+	cout << "-----------------------------------------------------------" << endl;
+	int i = 0;
+
+	cout << "List of Doctors (" << numOfDoctors << "): " << endl;
+	//cout << "------------------------------------------" << endl;
+	for (i = 0; i < numOfDoctors; i++) {
+		allDoctors[i]->print();
+		cout << endl;
+	}
+
+	cout << endl;
+
+	cout << "List of Nurses (" << numOfNurses << "): " << endl;
+	//cout << "------------------------------------------" << endl;
+	for (i = 0; i < numOfNurses; i++) {
+		allNurses[i]->print();
+		cout << endl;
+	}
+
+	cout << endl;
+	cout << "-----------------------------------------------------------" << endl;
 }

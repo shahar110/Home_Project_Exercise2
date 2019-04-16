@@ -1,35 +1,33 @@
 #ifndef __ARTICLE_H
 #define __ARTICLE_H
-#include <string>
-const int NAME_LENGTH = 20;
 
+#define _CRT_SECURE_NO_WARNINGS
+using namespace std;
+#include <iostream>
+#include "string.h"
+#include "date.h"
+
+const int NAME_LENGTH = 20;
 class Article
 {
 private:
 	char* articleName;
 	char* magazineName;
-	int date;
-
-	// we should make new class of date and saving the whole date
-
+	Date publishDate;
 
 public:
-	Article(const char* articleName, const char* magazineName, int date);
-	Article(const Article& other);
+	Article(const char* articleName, const char* magazineName, const Date& date);
 	~Article();
 
 	bool setArticleName(const char* articleName);
 	bool setMagazineName(const char* magazineName);
-	bool setdate(int date);
+	bool setDate(const Date& newDate);
 
 	const char* getArticleName() const;
 	const char* getMagazineName() const;
-	const int getDate() const;
+	Date getDate() const;
 
 	void print() const;
-
-
 };
-
 
 #endif // !1

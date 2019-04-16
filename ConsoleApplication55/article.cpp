@@ -1,21 +1,10 @@
 #include "article.h"
-#include <iostream>
 
-
-using namespace std;
-
-Article::Article(const char* articleName, const char* magazineName, int date) : articleName(nullptr), magazineName(nullptr)
+Article::Article(const char* articleName, const char* magazineName, const Date& date) : publishDate(date)
 {
 	setArticleName(articleName);
 	setMagazineName(magazineName);
-	//setDate(date);
-}
-
-Article::Article(const Article &other) : articleName(nullptr), magazineName(nullptr)
-{
-	setArticleName(other.articleName);
-	setMagazineName(other.magazineName);
-	//setDate(other.date);
+	//publishDate = date;
 }
 
 Article::~Article()
@@ -31,6 +20,7 @@ bool Article::setArticleName(const char* tmpArtName)
 	strcpy(articleName, tmpArtName);
 	return true;
 }
+
 bool Article::setMagazineName(const char* tmpMagName)
 {
 	delete[]magazineName;
@@ -38,9 +28,10 @@ bool Article::setMagazineName(const char* tmpMagName)
 	strcpy(magazineName, tmpMagName);
 	return true;
 }
-bool Article::setdate(int tmpDate)
+
+bool Article::setDate(const Date& newDate)
 {
-	date = tmpDate;
+	publishDate = newDate;
 	return true;
 }
 
@@ -54,13 +45,14 @@ const char* Article::getMagazineName() const
 	return magazineName;
 }
 
-const int Article::getDate() const
+Date Article::getDate() const
 {
-	return date;
+	return publishDate;
 }
 
 void Article::print() const
 {
-	cout << "The name of the article is : " << articleName << " and published in : " << magazineName
-		<< " at " << date;
+	cout << "Article name: " << articleName << "    , published by magazie: : " << magazineName
+		<< "    , at ";
+	publishDate.printDate();
 }
