@@ -12,9 +12,9 @@ using namespace std;
 #include "article.h"
 #include "hospital.h"
 #include "date.h"
-//test
+
 #define PURPOSE_LENGTH 200
-//test
+
 void addDepartment(Hospital& hospital);
 void addNurse(Hospital& hospital);
 void addDoctor(Hospital& hospital);
