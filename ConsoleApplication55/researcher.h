@@ -20,7 +20,16 @@ public:
 	Researcher(const char* name);
 	~Researcher();
 
+	bool operator<(const Researcher& r) const;
+	bool operator>(const Researcher& r) const;
+	bool operator==(const Researcher& r) const;
+	bool operator!=(const Researcher& r) const;
+	bool operator<=(const Researcher& r) const;
+	bool operator>=(const Researcher& r) const;
+
 	bool addArticle(const char* articleName, const char* magazineName, const Date& date);
+
+	int getNumOfArticles() const;
 
 	void printDetails() const;
 	void printArticleList() const;

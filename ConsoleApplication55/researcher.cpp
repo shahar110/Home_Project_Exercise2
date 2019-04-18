@@ -7,6 +7,59 @@ Researcher::Researcher(const char* name) : StaffMember(name)
 
 Researcher::~Researcher()
 {
+	for (int i = 0; i < numOfArticles; i++)
+	{
+		delete[]articleArr[i];
+	}
+	delete[]articleArr;
+}
+
+bool Researcher::operator<(const Researcher & r) const
+{
+	if (this->numOfArticles < r.numOfArticles)
+		return true;
+	else
+		return false;
+}
+
+bool Researcher::operator>(const Researcher & r) const
+{
+	if (this->numOfArticles > r.numOfArticles)
+		return true;
+	else
+		return false;
+}
+
+bool Researcher::operator==(const Researcher & r) const
+{
+	if (this->numOfArticles == r.numOfArticles)
+		return true;
+	else
+		return false;
+}
+
+bool Researcher::operator!=(const Researcher & r) const
+{
+	if (this->numOfArticles != r.numOfArticles)
+		return true;
+	else
+		return false;
+}
+
+bool Researcher::operator>=(const Researcher & r) const
+{
+	if (this->numOfArticles > r.numOfArticles || this->numOfArticles == r.numOfArticles)
+		return true;
+	else
+		return false;
+}
+
+bool Researcher::operator<=(const Researcher & r) const
+{
+	if (this->numOfArticles < r.numOfArticles || this->numOfArticles == r.numOfArticles)
+		return true;
+	else
+		return false;
 }
 
 bool Researcher::addArticle(const char* articleName, const char* magazineName, const Date& date)
@@ -30,6 +83,11 @@ bool Researcher::addArticle(const char* articleName, const char* magazineName, c
 	articleArr[numOfArticles] = new Article(articleName, magazineName, date);
 	numOfArticles++;
 	return true;
+}
+
+int Researcher::getNumOfArticles() const
+{
+	return numOfArticles;
 }
 
 void Researcher::printDetails() const

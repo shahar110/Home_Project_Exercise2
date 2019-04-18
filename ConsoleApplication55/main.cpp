@@ -25,6 +25,7 @@ void printDepartmentPatients(Hospital& hospital);
 void printAllStaffMembers(Hospital& hospital);
 void printAllResearchers(Hospital& hospital);
 void findAndPrintPatient(Hospital& hospital);
+void testOverloadedOperators(Hospital& hospital);
 int selectPatient(Hospital& hospital);
 int selectResearchers(Hospital& t);
 int departmentSelect(Hospital& t);
@@ -52,6 +53,7 @@ void main()
 		cout << "8: Print all staff members of the Hospital" << endl;
 		cout << "9: Print all Researchers of the Hospital Research Institute" << endl;
 		cout << "10: Find Patient and print its details" << endl;
+		cout << "11: Test logical operators" << endl;
 		cout << "-1: Quit" << endl;
 		cin >> option;
 		
@@ -90,19 +92,24 @@ void main()
 		case 9:
 			printAllResearchers(hospital);
 			break;
+		case 10:
+			findAndPrintPatient(hospital);
+			break;
 		case 11:
-			test(hospital);
+			testOverloadedOperators(hospital);
 			break;
 		case 12:
-			researcherTest(hospital);
+			test(hospital);
 			break;
 		case 13:
+			researcherTest(hospital);
+			break;
+		case 14:
 			inheritenceTest(hospital);
 			break;
 		default:
 			cout << "Ileggal selection entered!\nPlease enter a number (1 - 10)\n" << endl;
 		}
-		
 	}
 }
 
@@ -415,6 +422,7 @@ void findAndPrintPatient(Hospital& hospital)
 	}
 }
 
+
 void addResearcher(Hospital& hospital)
 {
 	char name[NAME_LENGTH];
@@ -456,6 +464,7 @@ void addArticles(Hospital& hospital)
 		return;
 	}
 
+	cout << "Select the number of the Researcher you wish to add Articles to\n";
 	selectResearcher = selectResearchers(hospital);
 	if (selectResearcher == -1)
 	{
@@ -485,7 +494,7 @@ void addArticles(Hospital& hospital)
 			cout << "Ileggal month entered!\nExiting\n";
 			return;
 		}
-		cout << "Enter year (4 digits)";
+		cout << "Enter year (4 digits):";
 		cin >> year;
 		if (year < 1000 || year > 9999)
 		{
@@ -538,7 +547,6 @@ int selectResearchers(Hospital& t)
 	int select = 0;
 	int i;
 
-	cout << "Select the number of the Researcher you wish to add Articles to\n";
 	for (i = 0; i < t.getNumOfResearchers(); i++)
 	{
 		cout << i << ". " << t.getResearchersArr()[i]->getName() << endl;
@@ -570,6 +578,92 @@ int departmentSelect(Hospital& t)
 	}
 
 	return select;
+}
+
+void testOverloadedOperators(Hospital & hospital)
+{
+	int L_Value, R_Value, slecectedOperator;
+	int testMoreFlag = 1;
+	char charInput;
+
+	if (hospital.getNumOfResearchers() < 2) {
+		cout << "Please first add at least two Researchers to the hospital in order to test logical operations.\nExiting..." << endl;
+		return;
+	}
+	cout << "Select the L value:\n";
+	L_Value = selectResearchers(hospital);
+	cout << "Resercher " << hospital.getResearchersArr()[L_Value]->getName() << " was selected, number of articles: " << hospital.getResearchersArr()[L_Value]->getNumOfArticles() << endl;
+	cout << "Select the R value:\n";
+	R_Value = selectResearchers(hospital);
+	cout << "Resercher " << hospital.getResearchersArr()[R_Value]->getName() << " was selected, number of articles: " << hospital.getResearchersArr()[R_Value]->getNumOfArticles() << endl;
+
+	while (testMoreFlag)
+	{
+		cout << "Slect the tested logic operator:" << endl;
+		cout << "1: L_Value < R_Value" << endl;
+		cout << "2: L_Value > R_Value" << endl;
+		cout << "3: L_Value == R_Value" << endl;
+		cout << "4: L_Value != R_Value" << endl;
+		cout << "5: L_Value <= R_Value" << endl;
+		cout << "6: L_Value >= R_Value" << endl;
+		cin >> slecectedOperator;
+
+		if (slecectedOperator < 1 || slecectedOperator > 6)
+		{
+			cout << "Illegal selection entered!\nExiting..." << endl;
+			return;
+		}
+		switch (slecectedOperator)
+		{
+		case 1:
+			cout << hospital.getResearchersArr()[L_Value]->getName() << "  <  " << hospital.getResearchersArr()[R_Value]->getName() << endl;
+			if (*(hospital.getResearchersArr()[L_Value]) < *(hospital.getResearchersArr()[R_Value]))
+				cout << "True!\n";
+			else
+				cout << "False!\n";
+			break;
+		case 2:
+			cout << hospital.getResearchersArr()[L_Value]->getName() << "  >  " << hospital.getResearchersArr()[R_Value]->getName() << endl;
+			if (*(hospital.getResearchersArr()[L_Value]) > *(hospital.getResearchersArr()[R_Value]))
+				cout << "True!\n";
+			else
+				cout << "False!\n";
+			break;
+		case 3:
+			cout << hospital.getResearchersArr()[L_Value]->getName() << "  ==  " << hospital.getResearchersArr()[R_Value]->getName() << endl;
+			if (*(hospital.getResearchersArr()[L_Value]) == *(hospital.getResearchersArr()[R_Value]))
+				cout << "True!\n";
+			else
+				cout << "False!\n";
+			break;
+		case 4:
+			cout << hospital.getResearchersArr()[L_Value]->getName() << "  !=  " << hospital.getResearchersArr()[R_Value]->getName() << endl;
+			if (*(hospital.getResearchersArr()[L_Value]) != *(hospital.getResearchersArr()[R_Value]))
+				cout << "True!\n";
+			else
+				cout << "False!\n";
+			break;
+		case 5:
+			cout << hospital.getResearchersArr()[L_Value]->getName() << "  <=  " << hospital.getResearchersArr()[R_Value]->getName() << endl;
+			if (*(hospital.getResearchersArr()[L_Value]) <= *(hospital.getResearchersArr()[R_Value]))
+				cout << "True!\n";
+			else
+				cout << "False!\n";
+			break;
+		case 6:
+			cout << hospital.getResearchersArr()[L_Value]->getName() << "  >=  " << hospital.getResearchersArr()[R_Value]->getName() << endl;
+			if (*(hospital.getResearchersArr()[L_Value]) >= *(hospital.getResearchersArr()[R_Value]))
+				cout << "True!\n";
+			else
+				cout << "False!\n";
+			break;
+		}
+
+		cout << "Press any key to test more logic operators, to quit press 'q'\n";
+		cin >> charInput;
+		if (charInput == 'q' || charInput == 'Q')
+			testMoreFlag = false;
+	}
 }
 
 void test(Hospital& hospital)
