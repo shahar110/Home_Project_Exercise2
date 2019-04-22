@@ -61,7 +61,7 @@ bool Researcher::operator<=(const Researcher & r) const
 	else
 		return false;
 }
-
+//check
 bool Researcher::addArticle(const char* articleName, const char* magazineName, const Date& date)
 {
 	if (physArticleArr == numOfArticles) 
