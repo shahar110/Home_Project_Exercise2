@@ -262,17 +262,15 @@ int selectPatient(Hospital& hospital)
 
 void addVisit(Hospital& hospital, int patientId, int departmentIndex)
 {
-	char purpose[PURPOSE_LENGTH], departmentName[NAME_LENGTH];
+	char departmentName[NAME_LENGTH];
 	int patientIndex, staffMemberId;
 	char *therapistName;
 	int day;
 	int month;
 	int year;
-
-	cout << "Enter the purpose of the Patient's visit:" << endl;
-	cin.getline(purpose, PURPOSE_LENGTH);
-	cin.getline(purpose, PURPOSE_LENGTH);
-
+	int purpose;
+	cout << "Enter the purpose of the Patient's visit: 0 for surgery 1 for check" << endl;
+	cin >> purpose;
 	//get the ID num and name of the department staff member (therapist) selected by the user
 	therapistName = hospital.getDeparmentsArr()[departmentIndex]->selectStaffMember(&staffMemberId);
 
@@ -716,10 +714,10 @@ void test(Hospital& hospital)
 	hospital.addPatient("Sarit", 3333, 1982, Female, 1);
 	hospital.addPatient("Tehila", 4444, 1983, Female, 1);
 
-	hospital.getPatientsArr()[0]->addVisit(d1, "Purpose 1", 1, "Simon", "Pnimit A");
-	hospital.getPatientsArr()[1]->addVisit(d1, "Purpose 2", 2, "Gurfunkel", "Pnimit A");
-	hospital.getPatientsArr()[2]->addVisit(d1, "Purpose 3", 3, "Sharon", "Pnimit B");
-	hospital.getPatientsArr()[3]->addVisit(d1, "Purpose 4", 4, "Adi", "Pnimit B");
+	//hospital.getPatientsArr()[0]->addVisit(d1, "Purpose 1", 1, "Simon", "Pnimit A");
+	//hospital.getPatientsArr()[1]->addVisit(d1, "Purpose 2", 2, "Gurfunkel", "Pnimit A");
+	//hospital.getPatientsArr()[2]->addVisit(d1, "Purpose 3", 3, "Sharon", "Pnimit B");
+	//hospital.getPatientsArr()[3]->addVisit(d1, "Purpose 4", 4, "Adi", "Pnimit B");
 
 	//for (int i = 0; i < 3; i++)
 	//{

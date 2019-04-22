@@ -4,7 +4,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 using namespace std;
 #include <iostream>
-#include "string.h"
+#include <string>
 #include "date.h"
 
 const int NAME_LENGTH = 20;

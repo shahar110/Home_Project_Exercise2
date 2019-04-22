@@ -3,7 +3,7 @@
 
 #define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
-#include "string.h"
+#include <string>
 using namespace std;
 #include "date.h"
 
@@ -12,9 +12,9 @@ using namespace std;
 
 class VisitForm
 {
-private:
+protected:
 	Date arrivalDate;
-	char* purpose;   
+	int purpose;   
 
 	char* therapistName;
 	int therapistNum;	
@@ -23,16 +23,16 @@ private:
 	int departmentPatientIndex = -1;
 
 public:
-	VisitForm(const Date& date, const char* purpose, int therapistNum, const char* therapistName,  const char* departmentName);
+	VisitForm(const Date& date, int purpose, int therapistNum, const char* therapistName,  const char* departmentName);
 
 	bool setDate(const Date& newDate);
-	bool setPurpose(const char* newPurpose);
+	bool setPurpose(int newPurpose);
 	bool setTherapist(int therapistNum, const char* therapistName);
 	bool setDepartmentName(const char* newDepartment);
 	bool setDepartmentIndex(int index);
 
 	Date getDate() const;
-	const char* getPurpose() const;
+	int getPurpose() const;
 	int getTherapist() const;
 	const char* getDepartment() const;
 

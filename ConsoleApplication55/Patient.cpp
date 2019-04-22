@@ -36,7 +36,7 @@ bool Patient::setGender(eGender newGender)
 	return true;
 }
 
-bool Patient::addVisit(const Date& arrivalDate, const char* purpose, int therapistNum, const char* therapistName, const char* departmentName)
+bool Patient::addVisit(const Date& arrivalDate, int purpose, int therapistNum, const char* therapistName, const char* departmentName)
 {
 	if (physVisitArr == visitHistoryCounter) {
 		physVisitArr *= 2;
@@ -55,7 +55,12 @@ bool Patient::addVisit(const Date& arrivalDate, const char* purpose, int therapi
 	}
 
 	//Add the new Visit Form to the Patient visits array
-	visitsArr[visitHistoryCounter] = new VisitForm(arrivalDate, purpose, therapistNum, therapistName, departmentName);
+	if (purpose == 1) {
+		visitsArr[visitHistoryCounter] = new VisitForm(arrivalDate, purpose, therapistNum, therapistName, departmentName);
+	}
+	else {
+		visitsArr[visitHistoryCounter] = new surgeryVisitation(arrivalDate, purpose, therapistNum, therapistName, departmentName);
+	}
 	visitHistoryCounter++;
 	return true;
 }

@@ -3,7 +3,7 @@
 
 #define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
-#include "string.h"
+#include <string>
 using namespace std;
 #include "Patient.h"
 #include "doctor.h"

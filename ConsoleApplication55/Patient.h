@@ -3,10 +3,10 @@
 
 #define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
-#include "string.h"
+#include <string>
 using namespace std;
 #include "VisitationForm.h"
-
+#include "surgeryVisitation.h"
 enum eGender {Male, Female};
 namespace { const char* genders[] = { "Male", "Female" }; }
 
@@ -17,6 +17,7 @@ private:
 	int id;
 	int birthYear;
 	eGender gender;
+	
 
 	VisitForm** visitsArr;
 	int visitHistoryCounter = 0;
@@ -32,7 +33,7 @@ public:
 	bool setId(long newId);
 	bool setBirthYear(int newBirthYear);
 	bool setGender(eGender newGender);
-	bool addVisit(const Date& arrivalDate, const char* purpose, int therapistNum, const char* therapistName, const char* departmentName);
+	bool addVisit(const Date& arrivalDate,int purpose, int therapistNum, const char* therapistName, const char* departmentName);
 	bool setDepartmentIndex(int index);
 	bool setDepartmentPatientArrIndex(int index);
 

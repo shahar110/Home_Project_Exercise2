@@ -1,6 +1,6 @@
 #include "VisitationForm.h"
 
-VisitForm::VisitForm(const Date& date, const char* purpose, int therapistNum, const char* therapistName, const char* departmentName) : arrivalDate(date)
+VisitForm::VisitForm(const Date& date, int purpose, int therapistNum, const char* therapistName, const char* departmentName) : arrivalDate(date)
 {
 	setPurpose(purpose);
 	setTherapist(therapistNum, therapistName);
@@ -13,11 +13,9 @@ bool VisitForm::setDate(const Date& newDate)
 	return true;
 }
 
-bool VisitForm::setPurpose(const char* newPurpose)
+bool VisitForm::setPurpose(int newPurpose)
 {
-	delete[]purpose;
-	purpose = new char[strlen(newPurpose) + 1];
-	strcpy(purpose, newPurpose);
+	purpose = newPurpose;
 	return true;
 }
 
@@ -48,7 +46,7 @@ Date VisitForm::getDate() const
 	return arrivalDate;
 }
 
-const char* VisitForm::getPurpose() const
+int VisitForm::getPurpose() const
 {
 	return purpose;
 }
@@ -68,4 +66,9 @@ void VisitForm::printVisitForm()
 	cout << "Department: " << departmentName << "    , Arrival Date: ";
 	arrivalDate.printDate(); 
 	cout << "   , Visit Purpose: " << purpose << "   , Assigned Therapist: " << therapistName;  
+	if (this->purpose == 1) cout <<endl<< " And he is in checking";
+	else cout <<endl<< " And he is in surgery";
 }
+
+
+// checking changing 
