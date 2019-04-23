@@ -35,4 +35,6 @@ bool Date::setYear(int newYear)
 void Date::printDate() const
 {
 	cout << day << "/" << month << "/" << year;
-};
+}
+
+;

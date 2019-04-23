@@ -37,7 +37,6 @@ void main()
 {
 	Hospital hospital("Academic Hospital");
 	int option = 0;
-
 	cout << "Hello and welcome to Tel-Aviv Academic College Hospital!\n" << endl;
 	while (option != -1)
 	{

@@ -23,6 +23,11 @@ public:
 	bool setYear(int newYear);
 
 	void printDate() const;
+	friend ostream& operator<<(ostream& os, const Date &d)
+	{
+		os <<d.day << "/" << d.month << "/" << d.year;
+		return os;
+	}
 };
 
 #endif // !1

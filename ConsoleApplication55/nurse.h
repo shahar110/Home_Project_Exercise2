@@ -18,6 +18,12 @@ public:
 	int getExperience() const;
 
 	void print() const;
+	friend ostream& operator<<(ostream& os, const Nurse &nurse)
+	{
+		os << "Nurse name: " << nurse.name << "   , years of experience: " << nurse.experience
+			<< "   , ID: " << nurse.employeeNum;
+		return os;
+	}
 };
 
 #endif // !1

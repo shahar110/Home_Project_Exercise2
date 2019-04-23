@@ -33,5 +33,10 @@ public:
 
 	void printDetails() const;
 	void printArticleList() const;
+	friend ostream& operator<<(ostream& os, const Researcher &researcher)
+	{
+		os << "Researcher Name: " << researcher.name<< "    , ID: " << researcher.employeeNum;
+		return os;
+	}
 };
 #endif
