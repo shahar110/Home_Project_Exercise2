@@ -78,7 +78,8 @@ void Hospital::addNurse(const char* nurseName, int years, int depratmentIndex)
 	nursesArr[numOfNurses] = new Nurse(nurseName, years);
 
 	//Add the pointer to the Nurse to the her department Nurses pointers arr
-	departmentArr[depratmentIndex]->addNurse(nursesArr[numOfNurses]);
+	//departmentArr[depratmentIndex]->addNurse(nursesArr[numOfNurses]);
+	*(departmentArr[depratmentIndex]) += nursesArr[numOfNurses];
 	numOfNurses++;
 }
 
@@ -113,9 +114,12 @@ void Hospital::addDoctor(const char* doctorName, const char* expertise, int depr
 
 	//Add the new Doctor to the Hospital Doctors array
 	doctorsArr[numOfDoctors] = new Doctor(doctorName, expertise);
-
 	//Add the pointer to the Doctor the his department Doctors pointers arr
-	departmentArr[depratmentIndex]->addDoctor(doctorsArr[numOfDoctors]);
+
+	//departmentArr[depratmentIndex]->addDoctor(doctorsArr[numOfDoctors]);
+
+	// Trying to change by overloading operator
+	*(departmentArr[depratmentIndex]) += doctorsArr[numOfDoctors];
 	numOfDoctors++;
 }
 

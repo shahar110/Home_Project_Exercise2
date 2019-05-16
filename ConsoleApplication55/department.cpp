@@ -264,3 +264,19 @@ void Department::printDepartmentStaff() const
 	cout << endl;
 	cout << "-----------------------------------------------------------" << endl;
 }
+
+
+bool Department::operator+=(Doctor* newDoctor)  
+{
+	addDoctor(newDoctor);
+	return true;
+	
+}
+
+
+
+bool Department::operator+=(Nurse* newNurse)  
+{
+	addNurse(newNurse);
+	return true;
+}

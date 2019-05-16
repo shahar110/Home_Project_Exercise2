@@ -55,7 +55,7 @@ bool Patient::addVisit(const Date& arrivalDate, int purpose, int therapistNum, c
 	}
 
 	//Add the new Visit Form to the Patient visits array
-	if (purpose == 1) {
+	if (purpose == CHECK) {
 		visitsArr[visitHistoryCounter] = new VisitForm(arrivalDate, purpose, therapistNum, therapistName, departmentName);
 	}
 	else {

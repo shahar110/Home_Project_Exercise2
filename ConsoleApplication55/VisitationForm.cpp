@@ -66,7 +66,7 @@ void VisitForm::printVisitForm()
 	cout << "Department: " << departmentName << "    , Arrival Date: ";
 	arrivalDate.printDate(); 
 	cout << "   , Visit Purpose: " << purpose << "   , Assigned Therapist: " << therapistName;  
-	if (this->purpose == 1) cout <<endl<< " And he is in checking";
+	if (this->purpose == CHECK) cout <<endl<< " And he is in checking";
 	else cout <<endl<< " And he is in surgery";
 }
 

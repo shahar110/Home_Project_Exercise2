@@ -47,6 +47,9 @@ public:
 	void printDepartment() const;
 	void printDepartmentStaff() const;
 	void printPatientsList() const;
+	bool operator+=(Doctor* newDoctor);
+	bool operator+=(Nurse* newNurse);
+
 };
 
 #endif

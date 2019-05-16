@@ -6,7 +6,7 @@
 #include <string>
 using namespace std;
 #include "date.h"
-
+const int CHECK = 1;
 //enum ePurpose { Treatment, Medicine ,Emergency, Visit, Reception };
 //namespace { const char* visitPurpose[] = { "Treatment", "Medicine", "Emergency", "Visit", "Reception" }; }
 
