@@ -1,16 +1,11 @@
 #include "surgeryVisitation.h"
 
 
-surgeryVisitation::surgeryVisitation(const Date& date, int purpose, int therapistNum, const char* therapistName
-	, const char* departmentName) : VisitForm::VisitForm(date, purpose, therapistNum, therapistName, departmentName)
+surgeryVisitation::surgeryVisitation(const Date& date, int purpose, int therapistNum, const char* therapistName, 
+	const char* departmentName, int roomNum, int isFasting) : VisitForm(date, purpose, therapistNum, therapistName, departmentName)
 {
-	int option,romNum;
-	cout << "If the patient fast press 1 if not 0: "<<endl;
-	cin >> option;
-	setIsFasting(option);
-	cout << "Enter room number : " << endl;
-	cin >> romNum;
-	setRoomNum(romNum);
+	setIsFasting(isFasting);
+	setRoomNum(roomNum);
 }
 
 bool surgeryVisitation::setIsFasting(int option)
@@ -34,12 +29,12 @@ int surgeryVisitation::getRoomNum()
 	return roomNum;
 }
 
-void surgeryVisitation::printSurgery()
+void surgeryVisitation::printVisitForm()
 {
-	this->printVisitForm();
-	cout << " And the room number is: " << roomNum;
+	VisitForm::printVisitForm();
+	cout << ",   room number: " << roomNum;
 	if (isFasting)
-		cout << " The patient didn't fast before sergery";
+		cout << ",   The patient didn't fast before sergery" << endl;
 	else
-		cout << "THe patient fast before sergery";
+		cout << ",   The patient fast before sergery" << endl;
 }

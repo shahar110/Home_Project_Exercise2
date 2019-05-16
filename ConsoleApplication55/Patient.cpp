@@ -59,7 +59,12 @@ bool Patient::addVisit(const Date& arrivalDate, int purpose, int therapistNum, c
 		visitsArr[visitHistoryCounter] = new VisitForm(arrivalDate, purpose, therapistNum, therapistName, departmentName);
 	}
 	else {
-		visitsArr[visitHistoryCounter] = new surgeryVisitation(arrivalDate, purpose, therapistNum, therapistName, departmentName);
+		int isFasting, roomNum;
+		cout << "Is the patient fasting? \n0: Fasting \n1: Not fasting " << endl;
+		cin >> isFasting;
+		cout << "Enter room number : " << endl;
+		cin >> roomNum;
+		visitsArr[visitHistoryCounter] = new surgeryVisitation(arrivalDate, purpose, therapistNum, therapistName, departmentName,roomNum, isFasting);
 	}
 	visitHistoryCounter++;
 	return true;

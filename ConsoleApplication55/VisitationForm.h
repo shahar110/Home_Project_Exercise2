@@ -36,7 +36,7 @@ public:
 	int getTherapist() const;
 	const char* getDepartment() const;
 
-	void printVisitForm();
+	virtual void printVisitForm();
 };
 
 #endif

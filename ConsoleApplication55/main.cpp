@@ -268,8 +268,13 @@ void addVisit(Hospital& hospital, int patientId, int departmentIndex)
 	int month;
 	int year;
 	int purpose;
-	cout << "Enter the purpose of the Patient's visit: 0 for surgery 1 for check" << endl;
+	cout << "Select the purpose of the Patient's visit:\n0: for Surgery\n1: for Examination" << endl;
 	cin >> purpose;
+	if (purpose < 0 || purpose>1)
+	{
+		cout << "Illegal selection enter!!!"<<endl;
+		return;
+	}
 	//get the ID num and name of the department staff member (therapist) selected by the user
 	therapistName = hospital.getDeparmentsArr()[departmentIndex]->selectStaffMember(&staffMemberId);
 
