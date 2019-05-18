@@ -537,7 +537,8 @@ void printAllResearchers(Hospital& hospital)
 {
 	for (int i = 0; i < hospital.getNumOfResearchers(); i++)
 	{
-		hospital.getResearchersArr()[i]->printDetails();
+		// change to ostream ----- hospital.getResearchersArr()[i]->printDetails();
+		cout << *(hospital.getResearchersArr()[i]);
 		cout << "\n------------------------------------------------" << endl;
 		hospital.getResearchersArr()[i]->printArticleList();
 		cout << "\n------------------------------------------------" << endl;

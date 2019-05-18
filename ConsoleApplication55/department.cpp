@@ -208,7 +208,8 @@ void Department::printDepartment() const
 
 	cout << "List of Nurses in the department (" << numOfNurses << "): " << endl;
 	for (i = 0; i < numOfNurses; i++) {
-		allNurses[i]->print();
+		// change to ostream ----- allNurses[i]->print();
+		cout << allNurses[i];
 		cout << endl;
 	}
 

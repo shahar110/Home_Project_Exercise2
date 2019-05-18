@@ -64,7 +64,7 @@ const char* VisitForm::getDepartment() const
 void VisitForm::printVisitForm()
 {
 	cout << "Department: " << departmentName << "    , Arrival Date: ";
-	arrivalDate.printDate(); 
+	cout << arrivalDate; 
 	cout << "   , Visit Purpose: " << purpose << "   , Assigned Therapist: " << therapistName;  
 }
 
