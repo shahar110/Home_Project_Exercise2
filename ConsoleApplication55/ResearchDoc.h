@@ -3,12 +3,12 @@
 
 #include "doctor.h"
 #include "researcher.h"
+#include <string>
 
 class ResearchDoctor : public Doctor, public Researcher
 {
 public:
-	ResearchDoctor(const char* name, const char* expertise);
-	~ResearchDoctor();
+	ResearchDoctor(const string& name, const string& expertise);
 
 };
 

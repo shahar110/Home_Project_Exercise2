@@ -2,11 +2,6 @@
 
 
 
-ResearchDoctor::ResearchDoctor(const char* name, const char* expertise) : Doctor(name, expertise), Researcher(name), StaffMember(name)
-{
-}
-
-
-ResearchDoctor::~ResearchDoctor()
+ResearchDoctor::ResearchDoctor(const string& name, const string& expertise) : Doctor(name, expertise), Researcher(name), StaffMember(name)
 {
 }

@@ -2,27 +2,20 @@
 
 int StaffMember::employeeNumCounter = 0;
 
-StaffMember::StaffMember(const char * name)
+StaffMember::StaffMember(const string& newName)
 {
 	employeeNumCounter++;
 	employeeNum = employeeNumCounter;
-	setName(name);
+	setName(newName);
 }
 
-StaffMember::~StaffMember()
+bool StaffMember::setName(const string& tmpName)
 {
-	delete[]name;
-}
-
-bool StaffMember::setName(const char* tmpName)
-{
-	delete[]name;
-	name = new char[strlen(tmpName) + 1];
-	strcpy(name, tmpName);
+	this->name = tmpName;
 	return true;
 }
 
-const char * StaffMember::getName() const
+const string& StaffMember::getName() const
 {
 	return name;
 }
