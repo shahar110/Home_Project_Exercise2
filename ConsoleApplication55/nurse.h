@@ -10,8 +10,7 @@ private:
 	int experience;
 
 public:
-	Nurse(const char * name, int experience);
-	~Nurse();
+	Nurse(string name, int experience);
 
 	bool setExperience(int experience);
 

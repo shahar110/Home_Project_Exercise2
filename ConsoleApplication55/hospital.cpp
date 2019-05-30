@@ -2,7 +2,7 @@
 
 int Hospital::employeeCounter = 0;
 
-Hospital::Hospital(const char* name) 
+Hospital::Hospital(const string& name) 
 {
 	setName(name);
 
@@ -22,7 +22,7 @@ Hospital::~Hospital()
 	delete[]researchersArr;
 }
 
-void Hospital::addDepartment(const char* departmentName)
+void Hospital::addDepartment(const string& departmentName)
 {
 	if (physDepartmentsArr == numOfDepartments) {
 		physDepartmentsArr *= 2;
@@ -55,7 +55,7 @@ Department** Hospital::getDeparmentsArr()
 	return departmentArr;
 }
 
-void Hospital::addNurse(const char* nurseName, int years, int depratmentIndex)
+void Hospital::addNurse(const string& nurseName, int years, int depratmentIndex)
 {
 	if (physNursesArr == numOfNurses) {
 		physNursesArr *= 2;
@@ -93,7 +93,7 @@ Nurse** Hospital::getNursesArr()
 	return nursesArr;
 }
 
-void Hospital::addDoctor(const char* doctorName, const char* expertise, int depratmentIndex)
+void Hospital::addDoctor(const string& doctorName, const string& expertise, int depratmentIndex)
 {
 	if (physDoctorsArr == numOfDoctors) {
 		physDoctorsArr *= 2;
@@ -123,7 +123,7 @@ void Hospital::addDoctor(const char* doctorName, const char* expertise, int depr
 	numOfDoctors++;
 }
 
-void Hospital::addSurgeon(const char* doctorName, const char* expertise, int depratmentIndex, int numOfSurgeries)
+void Hospital::addSurgeon(const string& doctorName, const string& expertise, int depratmentIndex, int numOfSurgeries)
 {
 	if (physDoctorsArr == numOfDoctors) {
 		physDoctorsArr *= 2;
@@ -160,7 +160,7 @@ Doctor** Hospital::getDoctorsArr()
 	return doctorsArr;
 }
 
-void Hospital::addPatient(const char* patientName, int patientId, int birthYear, eGender patientGender, int depratmentIndex)
+void Hospital::addPatient(const string& patientName, int patientId, int birthYear, eGender patientGender, int depratmentIndex)
 {
 	if (physPatientArr == numOfPatients) {
 		physPatientArr *= 2;
@@ -233,7 +233,7 @@ int Hospital::findPatientIndex(int id)
 	return -1;
 }
 
-void Hospital::addResearcher(const char* researcherName)
+void Hospital::addResearcher(const string& researcherName)
 {
 	if (physResearchersArr == numOfResearchers) {
 		physResearchersArr *= 2;
@@ -267,7 +267,7 @@ Researcher** Hospital::getResearchersArr()
 	return researchersArr;
 }
 
-void Hospital::addResearchDoctor(const char* doctorName, const char* expertise, int depratmentIndex)
+void Hospital::addResearchDoctor(const string& doctorName, const string& expertise, int depratmentIndex)
 {
 	if (physDoctorsArr == numOfDoctors) {
 		physDoctorsArr *= 2;
@@ -313,11 +313,8 @@ void Hospital::addResearchDoctor(const char* doctorName, const char* expertise, 
 	numOfResearchers++;
 }
 
-bool Hospital::setName(const char* newName)
+bool Hospital::setName(const string& newName)
 {
-	delete[]name;
-	name = new char[strlen(newName) + 1];
-	strcpy(name, newName);
-
+	name = newName;
 	return true;
 }

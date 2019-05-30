@@ -16,7 +16,7 @@ using namespace std;
 class Hospital
 {
 private:
-	char* name;
+	string name;
 	Department** departmentArr;
 	Doctor** doctorsArr;
 	Nurse** nursesArr;
@@ -41,35 +41,35 @@ private:
 	static int employeeCounter;
 
 public:
-	Hospital(const char* name);
+	Hospital(const string& name);
 	~Hospital();
 
-	bool setName(const char* newName);
+	bool setName(const string& newName);
 
-	void addDepartment(const char* departmentName);
+	void addDepartment(const string& departmentName);
 	int getNumOfDepartments() const;
 	Department** getDeparmentsArr();
 
-	void addNurse(const char* nurseName, int years, int depratmentIndex);
+	void addNurse(const string& nurseName, int years, int depratmentIndex);
 	int getNumOfNurses() const;
 	Nurse** getNursesArr();
 
-	void addDoctor(const char* doctorName, const char* expertise, int depratmentIndex);
-	void addSurgeon(const char* doctorName, const char* expertise, int depratmentIndex, int numOfSurgeries);
+	void addDoctor(const string& doctorName, const string& expertise, int depratmentIndex);
+	void addSurgeon(const string& doctorName, const string& expertise, int depratmentIndex, int numOfSurgeries);
 	int getNumOfDoctors() const;
 	Doctor** getDoctorsArr();
 
-	void addPatient(const char* patientName, int patientId, int birthYear, eGender patientGender, int depratmentIndex);
+	void addPatient(const string& patientName, int patientId, int birthYear, eGender patientGender, int depratmentIndex);
 	int getNumOfPatients() const;
 	Patient** getPatientsArr();
 	int findPatientIndex(int id);
 	void changePatientDepartment(int patientId, int newDepartmentIndex);
 
-	void addResearcher(const char* researcherName);
+	void addResearcher(const string& researcherName);
 	int getNumOfResearchers() const;
 	Researcher** getResearchersArr();
 
-	void addResearchDoctor(const char* doctorName, const char* expertise, int depratmentIndex);
+	void addResearchDoctor(const string& doctorName, const string& expertise, int depratmentIndex);
 };
 
 #endif;

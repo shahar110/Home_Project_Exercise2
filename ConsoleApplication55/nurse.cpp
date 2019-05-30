@@ -2,13 +2,9 @@
 #include "nurse.h"
 
 
-Nurse::Nurse(const char * name, int experience) : StaffMember(name)
+Nurse::Nurse(string name, int experience) : StaffMember(name)
 {
 	setExperience(experience);
-}
-
-Nurse::~Nurse()
-{
 }
 
 bool Nurse::setExperience(int experience)

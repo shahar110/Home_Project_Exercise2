@@ -3,14 +3,14 @@
 using namespace std;
 
 // checking if there is max nurse and doc if not take care on the allocation
-Department::Department(const char* departmentName)
+Department::Department(const string& departmentName)
 {
 	setName(departmentName);
 	allDoctors = new Doctor*[physDoctorArr];
 	allNurses = new Nurse*[physNursesArr];
 	allPatients = new Patient*[physPatientsArr];
 }
-
+//////     Don't forget to remove
 Department::~Department()
 {
 	delete[]allDoctors;
@@ -18,12 +18,9 @@ Department::~Department()
 	delete[]allPatients;
 }
 
-bool Department::setName(const char* departmentName)
+bool Department::setName(const string& departmentName)
 {
-	delete[]name;
-	name = new char[strlen(departmentName) + 1];
-	strcpy(name, departmentName);
-	return true;
+	name = departmentName;
 }
 
 bool Department::addNurse(Nurse* newNurse)
@@ -159,10 +156,7 @@ bool Department::setNumOfPatients(int num)
 	return true;
 }
 
-const char* Department::getName() const
-{
-	return name;
-}
+
 
 Doctor** Department::getAllDoctors()
 {

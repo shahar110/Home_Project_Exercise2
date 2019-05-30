@@ -10,7 +10,7 @@
 class Department
 {
 private:
-	char* name;
+	string name;
 	Doctor** allDoctors;
 	Nurse** allNurses;
 	Patient** allPatients;
@@ -25,16 +25,16 @@ private:
 	int physPatientsArr = 2;
 
 public:
-	Department(const char* departmentName);
+	Department(const string& departmentName);
 	~Department();
 
-	bool setName(const char* departmentName);
+	bool setName(const string& departmentName);
 	bool addDoctor(Doctor* newDoctor);
 	bool addNurse(Nurse* newNurse);
 	bool addPatient(Patient* newPatient);
 	bool setNumOfPatients(int num);
 
-	const char* getName() const;
+	const string& getName() const { return name; };
 	Doctor** getAllDoctors();
 	int getNumOfDoctors() const;
 	Nurse** getAllNurses();
