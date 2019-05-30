@@ -1,6 +1,6 @@
 #include "researcher.h"
 
-Researcher::Researcher(const char* name) : StaffMember(name)
+Researcher::Researcher(const string& name) : StaffMember(name)
 {
 	articleArr = new Article*[physArticleArr];
 }
@@ -62,7 +62,7 @@ bool Researcher::operator<=(const Researcher & r) const
 		return false;
 }
 
-bool Researcher::addArticle(const char* articleName, const char* magazineName, const Date& date)
+bool Researcher::addArticle(const string& articleName, const string& magazineName, const Date& date)
 {
 	if (physArticleArr == numOfArticles) 
 	{

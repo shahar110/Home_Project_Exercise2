@@ -146,6 +146,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Array.cpp" />
     <ClCompile Include="article.cpp" />
     <ClCompile Include="date.cpp" />
     <ClCompile Include="department.cpp" />
@@ -162,6 +163,7 @@
     <ClCompile Include="VisitationForm.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Array.h" />
     <ClInclude Include="article.h" />
     <ClInclude Include="date.h" />
     <ClInclude Include="department.h" />

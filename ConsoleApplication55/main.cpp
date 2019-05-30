@@ -261,9 +261,9 @@ int selectPatient(Hospital& hospital)
 
 void addVisit(Hospital& hospital, int patientId, int departmentIndex)
 {
-	char departmentName[NAME_LENGTH];
+	string departmentName;
 	int patientIndex, staffMemberId;
-	char *therapistName;
+	string therapistName;
 	int day;
 	int month;
 	int year;
@@ -279,7 +279,7 @@ void addVisit(Hospital& hospital, int patientId, int departmentIndex)
 	therapistName = hospital.getDeparmentsArr()[departmentIndex]->selectStaffMember(&staffMemberId);
 
 	//get the name of the department
-	strcpy(departmentName, hospital.getDeparmentsArr()[departmentIndex]->getName());
+	departmentName = hospital.getDeparmentsArr()[departmentIndex]->getName();
 
 	//get the current date (T.B.D)
 	cout << "Enter arrival date: " << endl;

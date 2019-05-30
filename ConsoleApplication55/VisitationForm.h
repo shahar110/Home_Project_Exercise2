@@ -4,8 +4,9 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <string>
-using namespace std;
 #include "date.h"
+using namespace std;
+
 const int CHECK = 1;
 //enum ePurpose { Treatment, Medicine ,Emergency, Visit, Reception };
 //namespace { const char* visitPurpose[] = { "Treatment", "Medicine", "Emergency", "Visit", "Reception" }; }
@@ -16,25 +17,25 @@ protected:
 	Date arrivalDate;
 	int purpose;   
 
-	char* therapistName;
+	string therapistName;
 	int therapistNum;	
 
-	char* departmentName;
+	string departmentName;
 	int departmentPatientIndex = -1;
 
 public:
-	VisitForm(const Date& date, int purpose, int therapistNum, const char* therapistName,  const char* departmentName);
+	VisitForm(const Date& date, int purpose, int therapistNum, const string& therapistName,  const string& departmentName);
 
 	bool setDate(const Date& newDate);
 	bool setPurpose(int newPurpose);
-	bool setTherapist(int therapistNum, const char* therapistName);
-	bool setDepartmentName(const char* newDepartment);
+	bool setTherapist(int therapistNum, const string& therapistName);
+	bool setDepartmentName(const string& newDepartment);
 	bool setDepartmentIndex(int index);
 
 	Date getDate() const;
 	int getPurpose() const;
 	int getTherapist() const;
-	const char* getDepartment() const;
+	const string& getDepartment() const;
 
 	virtual void printVisitForm();
 };

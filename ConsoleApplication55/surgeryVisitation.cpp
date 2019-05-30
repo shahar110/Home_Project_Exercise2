@@ -1,8 +1,8 @@
 #include "surgeryVisitation.h"
 
 
-surgeryVisitation::surgeryVisitation(const Date& date, int purpose, int therapistNum, const char* therapistName, 
-	const char* departmentName, int roomNum, int isFasting) : VisitForm(date, purpose, therapistNum, therapistName, departmentName)
+surgeryVisitation::surgeryVisitation(const Date& date, int purpose, int therapistNum, const string& therapistName,
+	const string& departmentName, int roomNum, int isFasting) : VisitForm(date, purpose, therapistNum, therapistName, departmentName)
 {
 	setIsFasting(isFasting);
 	setRoomNum(roomNum);

@@ -1,19 +1,19 @@
 #ifndef __DOCTOR_H
 #define __DOCTOR_H
 #include "StaffMember.h"
+#include <string>
 
 class Doctor : virtual public StaffMember
 {
 protected:
-	char* expertise;
+	string expertise;
 
 public:
-	Doctor(const char* name, const char* expertise);
-	~Doctor();
+	Doctor(const string& name, const string& expertise);
 
-	bool setExpertise(const char* expertise);
+	bool setExpertise(const string& expertise);
 
-	const char* getExpertise() const;
+	const string& getExpertise() const;
 
 	virtual void print() const;
 };

@@ -1,25 +1,18 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include "doctor.h"
 
-Doctor::Doctor(const char* name, const char* expertise) : StaffMember(name)
+Doctor::Doctor(const string& name, const string& expertise) : StaffMember(name)
 {
 	setExpertise(expertise);
 }
 
-Doctor::~Doctor()
+bool Doctor::setExpertise(const string& tmpExpertise)
 {
-	delete[]expertise;
-}
-
-bool Doctor::setExpertise(const char* tmpExpertise)
-{
-	delete[]expertise;
-	expertise = new char[strlen(tmpExpertise) + 1];
-	strcpy(expertise, tmpExpertise);
+	this->expertise = tmpExpertise;
 	return true;
 }
 
-const char* Doctor::getExpertise() const
+const string& Doctor::getExpertise() const
 {
 	return expertise;
 }

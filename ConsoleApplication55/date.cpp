@@ -7,13 +7,6 @@ Date::Date(int day, int month, int year)
 	setYear(year);
 }
 
-Date::Date(const Date &other)
-{
-	setDay(other.day);
-	setMonth(other.month);
-	setYear(other.year);
-}
-
 bool Date::setDay(int newDay)
 {
 	day = newDay;

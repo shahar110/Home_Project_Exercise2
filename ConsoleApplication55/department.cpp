@@ -21,6 +21,7 @@ Department::~Department()
 bool Department::setName(const string& departmentName)
 {
 	name = departmentName;
+	return true;
 }
 
 bool Department::addNurse(Nurse* newNurse)
@@ -119,9 +120,9 @@ const string& Department::selectStaffMember(int* staffMemberNum)
 		*staffMemberNum = allDoctors[selectionIndex]->getEmployeeNum();
 
 		
-		staffMemberName = allDoctors[selectionIndex]->getName();
-
-		return staffMemberName;
+		//staffMemberName = allDoctors[selectionIndex]->getName();
+		return allDoctors[selectionIndex]->getName();
+		//return staffMemberName;
 	break;
 
 	case 2:
@@ -137,9 +138,9 @@ const string& Department::selectStaffMember(int* staffMemberNum)
 		}
 
 		*staffMemberNum = allNurses[selectionIndex]->getEmployeeNum();
-		staffMemberName=allNurses[selectionIndex]->getName();
+		return allNurses[selectionIndex]->getName();
 
-		return staffMemberName;
+		//return staffMemberName;
 	break;
 	default:
 		cout << "Illegal sellection entered!\nExisiting...\n";

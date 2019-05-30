@@ -1,6 +1,6 @@
 #include "SurgeonDoc.h"
 
-SurgeonDoctor::SurgeonDoctor(const char* name, const char* expetise, int numOfSurgeries) : Doctor(name, expetise), StaffMember(name)
+SurgeonDoctor::SurgeonDoctor(const string& name, const string& expetise, int numOfSurgeries) : Doctor(name, expetise), StaffMember(name)
 {
 	setNumOfSurgeries(numOfSurgeries);
 }

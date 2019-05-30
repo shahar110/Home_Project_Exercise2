@@ -8,7 +8,7 @@ class SurgeonDoctor : public Doctor
 protected:
 	int numOfSurgeries;
 public:
-	SurgeonDoctor(const char* name, const char* expetise, int numOfSurgeries);
+	SurgeonDoctor(const string& name, const string& expetise, int numOfSurgeries);
 
 	bool setNumOfSurgeries(int numOfSurgeries);
 

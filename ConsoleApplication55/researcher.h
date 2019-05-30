@@ -17,7 +17,7 @@ protected:
 	int numOfArticles = 0;
 
 public:
-	Researcher(const char* name);
+	Researcher(const string& name);
 	~Researcher();
 
 	bool operator<(const Researcher& r) const;
@@ -27,7 +27,7 @@ public:
 	bool operator<=(const Researcher& r) const;
 	bool operator>=(const Researcher& r) const;
 
-	bool addArticle(const char* articleName, const char* magazineName, const Date& date);
+	bool addArticle(const string& articleName, const string& magazineName, const Date& date);
 
 	int getNumOfArticles() const;
 
