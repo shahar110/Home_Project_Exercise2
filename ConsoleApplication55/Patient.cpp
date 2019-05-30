@@ -1,6 +1,6 @@
 #include "Patient.h"
 
-Patient::Patient(const char* name, int id, int birthYear, eGender gender)
+Patient::Patient(const string& name, int id, int birthYear, eGender gender)
 {
 	setName(name);
 	setId(id);
@@ -10,11 +10,9 @@ Patient::Patient(const char* name, int id, int birthYear, eGender gender)
 	visitsArr = new VisitForm*[physVisitArr];
 }
 
-bool Patient::setName(const char* newName)
+bool Patient::setName(const string& newName)
 {
-	delete[]name;
-	name = new char[strlen(newName) + 1];
-	strcpy(name, newName);
+	name = newName;
 	return true;
 }
 
@@ -36,7 +34,7 @@ bool Patient::setGender(eGender newGender)
 	return true;
 }
 
-bool Patient::addVisit(const Date& arrivalDate, int purpose, int therapistNum, const char* therapistName, const char* departmentName)
+bool Patient::addVisit(const Date& arrivalDate, int purpose, int therapistNum, const string& therapistName, const string& departmentName)
 {
 	if (physVisitArr == visitHistoryCounter) {
 		physVisitArr *= 2;
@@ -82,10 +80,6 @@ bool Patient::setDepartmentPatientArrIndex(int index)
 	return true;
 }
 
-const char* Patient::getName() const
-{
-	return name;
-}
 
 int Patient::getId() const
 {
