@@ -93,10 +93,10 @@ bool Department::addPatient(Patient* newPatient)
 	return true;
 }
 
-char* Department::selectStaffMember(int* staffMemberNum)
+const string& Department::selectStaffMember(int* staffMemberNum)
 {
 	int i,  selectionIndex = 0, selection;
-	char *staffMemberName = nullptr;
+	string staffMemberName;
 
 	cout << "1: Doctors list" << endl;
 	cout << "2: Nurses list" << endl;
@@ -118,8 +118,8 @@ char* Department::selectStaffMember(int* staffMemberNum)
 
 		*staffMemberNum = allDoctors[selectionIndex]->getEmployeeNum();
 
-		staffMemberName = new char(strlen(allDoctors[selectionIndex]->getName()) + 1);
-		strcpy(staffMemberName, allDoctors[selectionIndex]->getName());
+		
+		staffMemberName = allDoctors[selectionIndex]->getName();
 
 		return staffMemberName;
 	break;
@@ -137,9 +137,7 @@ char* Department::selectStaffMember(int* staffMemberNum)
 		}
 
 		*staffMemberNum = allNurses[selectionIndex]->getEmployeeNum();
-
-		staffMemberName = new char(strlen(allNurses[selectionIndex]->getName()) + 1);
-		strcpy(staffMemberName, allNurses[selectionIndex]->getName());
+		staffMemberName=allNurses[selectionIndex]->getName();
 
 		return staffMemberName;
 	break;

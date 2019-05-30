@@ -42,7 +42,7 @@ public:
 	Patient** getAllPatients();
 	int getNumOfPatients() const;
 
-	char* selectStaffMember(int* staffMemberNum);
+	const string& selectStaffMember(int* staffMemberNum);
 
 	void printDepartment() const;
 	void printDepartmentStaff() const;
