@@ -7,15 +7,12 @@ using namespace std;
 #include "string.h"
 #include "article.h"
 #include "StaffMember.h"
-
+#include "Array.h"
 class Researcher : virtual public StaffMember
 {
 protected:
-	Article** articleArr;
-
-	int physArticleArr = 2;
-	int numOfArticles = 0;
-
+	Array<Article> articleArr;
+	
 public:
 	Researcher(const string& name);
 	~Researcher();
@@ -38,5 +35,6 @@ public:
 		os << "Researcher Name: " << researcher.name<< "    , ID: " << researcher.employeeNum;
 		return os;
 	}
+	
 };
 #endif

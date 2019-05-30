@@ -1,22 +1,12 @@
 #include "researcher.h"
 
-Researcher::Researcher(const string& name) : StaffMember(name)
-{
-	articleArr = new Article*[physArticleArr];
-}
+Researcher::Researcher(const string& name) : StaffMember(name) {}
 
-Researcher::~Researcher()
-{
-	for (int i = 0; i < numOfArticles; i++)
-	{
-		delete[]articleArr[i];
-	}
-	delete[]articleArr;
-}
+Researcher::~Researcher()	{}
 
 bool Researcher::operator<(const Researcher & r) const
 {
-	if (this->numOfArticles < r.numOfArticles)
+	if (this->articleArr.getSize() < r.articleArr.getSize())
 		return true;
 	else
 		return false;
@@ -24,7 +14,7 @@ bool Researcher::operator<(const Researcher & r) const
 
 bool Researcher::operator>(const Researcher & r) const
 {
-	if (this->numOfArticles > r.numOfArticles)
+	if (this->articleArr.getSize())
 		return true;
 	else
 		return false;
@@ -32,7 +22,7 @@ bool Researcher::operator>(const Researcher & r) const
 
 bool Researcher::operator==(const Researcher & r) const
 {
-	if (this->numOfArticles == r.numOfArticles)
+	if (this->articleArr.getSize() == r.articleArr.getSize())
 		return true;
 	else
 		return false;
@@ -40,7 +30,7 @@ bool Researcher::operator==(const Researcher & r) const
 
 bool Researcher::operator!=(const Researcher & r) const
 {
-	if (this->numOfArticles != r.numOfArticles)
+	if (this->articleArr.getSize() != r.articleArr.getSize())
 		return true;
 	else
 		return false;
@@ -48,7 +38,7 @@ bool Researcher::operator!=(const Researcher & r) const
 
 bool Researcher::operator>=(const Researcher & r) const
 {
-	if (this->numOfArticles > r.numOfArticles || this->numOfArticles == r.numOfArticles)
+	if (this->articleArr.getSize() == r.articleArr.getSize() || this->articleArr.getSize() > r.articleArr.getSize())
 		return true;
 	else
 		return false;
@@ -56,7 +46,7 @@ bool Researcher::operator>=(const Researcher & r) const
 
 bool Researcher::operator<=(const Researcher & r) const
 {
-	if (this->numOfArticles < r.numOfArticles || this->numOfArticles == r.numOfArticles)
+	if (this->articleArr.getSize() == r.articleArr.getSize() || this->articleArr.getSize() < r.articleArr.getSize())
 		return true;
 	else
 		return false;
@@ -64,30 +54,13 @@ bool Researcher::operator<=(const Researcher & r) const
 
 bool Researcher::addArticle(const string& articleName, const string& magazineName, const Date& date)
 {
-	if (physArticleArr == numOfArticles) 
-	{
-		physArticleArr *= 2;
-
-		Article** temp = new Article*[numOfArticles];
-		for (int i = 0; i < numOfArticles; i++)
-			temp[i] = articleArr[i];
-
-		delete[]articleArr;
-
-		articleArr = new Article*[physArticleArr];
-		for (int i = 0; i < numOfArticles; i++)
-			articleArr[i] = temp[i];
-
-		delete[]temp;
-	}
-	articleArr[numOfArticles] = new Article(articleName, magazineName, date);
-	numOfArticles++;
+	articleArr += Article(articleName, magazineName, date);
 	return true;
 }
 
 int Researcher::getNumOfArticles() const
 {
-	return numOfArticles;
+	return this->articleArr.getSize();
 }
 
 void Researcher::printDetails() const
@@ -97,10 +70,11 @@ void Researcher::printDetails() const
 
 void Researcher::printArticleList() const
 {
-	cout << name << " - Displaying list of articles(" << numOfArticles << "):" << endl;
-	for (int i = 0; i < numOfArticles; i++)
-	{
-		articleArr[i]->print();
-		cout << endl;
-	}
+	cout << name << " - Displaying list of articles(" << this->articleArr.getSize() << "):" << endl;
+	cout << articleArr;
+	//for (int i = 0; i < this->articleArr.getSize(); i++)
+	//{
+	//	articleArr[i]->print();
+	//	cout << endl;
+	//}
 }

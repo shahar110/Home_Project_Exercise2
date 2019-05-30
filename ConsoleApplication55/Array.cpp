@@ -43,3 +43,10 @@ const Array<T>& Array<T>::operator+=(const T&newVal)
 	}
 	return *this;
 }
+
+template<class T>
+const int Array<T>::getSize()  const 
+{
+	return logicalSize;
+}
+
