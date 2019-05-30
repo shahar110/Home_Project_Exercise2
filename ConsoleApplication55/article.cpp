@@ -1,31 +1,23 @@
 #include "article.h"
 
-Article::Article(const char* articleName, const char* magazineName, const Date& date) : publishDate(date)
+
+Article::Article(string articleName, string magazineName, const Date& date) : publishDate(date)
 {
 	setArticleName(articleName);
 	setMagazineName(magazineName);
 	//publishDate = date;
 }
 
-Article::~Article()
-{
-	delete[]articleName;
-	delete[]magazineName;
-}
 
-bool Article::setArticleName(const char* tmpArtName)
+bool Article::setArticleName(string tmpArtName)
 {
-	delete[]articleName;
-	articleName = new char[strlen(tmpArtName) + 1];
-	strcpy(articleName, tmpArtName);
+	this->articleName = tmpArtName;
 	return true;
 }
 
-bool Article::setMagazineName(const char* tmpMagName)
+bool Article::setMagazineName(string tmpMagName)
 {
-	delete[]magazineName;
-	magazineName = new char[strlen(tmpMagName) + 1];
-	strcpy(magazineName, tmpMagName);
+	magazineName = tmpMagName;
 	return true;
 }
 
@@ -35,15 +27,6 @@ bool Article::setDate(const Date& newDate)
 	return true;
 }
 
-const char* Article::getArticleName() const
-{
-	return articleName;
-}
-
-const char* Article::getMagazineName() const
-{
-	return magazineName;
-}
 
 Date Article::getDate() const
 {
