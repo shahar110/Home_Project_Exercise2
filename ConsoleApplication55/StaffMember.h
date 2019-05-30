@@ -3,22 +3,22 @@
 
 #define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
-using namespace std;
 #include <string>
+using namespace std;
+
 
 
 class StaffMember
 {
 protected:
-	char* name;
+	string name;
 	static int employeeNumCounter;
 	int employeeNum;
 public:
-	StaffMember(const char* name);
-	~StaffMember();
+	StaffMember(const string& name);
 
-	bool setName(const char* name);
-	const char* getName() const;
+	bool setName(const string& name);
+	const string& getName() const;
 
 	int getEmployeeNum() const;
 };
